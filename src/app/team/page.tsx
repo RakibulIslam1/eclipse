@@ -1,7 +1,7 @@
 export default function TeamPage() {
   return (
     <section className="page-flow">
-      <h1>Team</h1>
+      <h1>About Us</h1>
       <p>
         Meet the core team that designs curriculum, supports learners, and keeps
         the community active.

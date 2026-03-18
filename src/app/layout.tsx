@@ -51,7 +51,7 @@ export default function RootLayout({
               <div className="nav-links nav-links-center">
                 <Link href="/courses">Courses</Link>
                 <Link href="/mentors">Mentors</Link>
-                <Link href="/team">Team</Link>
+                <Link href="/team">About Us</Link>
               </div>
               <div className="nav-links nav-links-right">
                 <button type="button" className="profile-icon-btn" aria-label="Profile">
