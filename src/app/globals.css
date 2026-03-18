@@ -118,20 +118,11 @@ a {
   color: #ffffff;
   border: 1.2px solid transparent;
   background:
-    linear-gradient(115deg, #0f6f9d, #1f9f88) padding-box,
-    conic-gradient(
-      from var(--studyroom-ring-angle, 0deg),
-      rgba(255, 255, 255, 0) 0deg,
-      rgba(255, 255, 255, 0) 305deg,
-      rgba(168, 255, 137, 0.96) 322deg,
-      rgba(231, 126, 40, 0.98) 336deg,
-      rgba(255, 255, 255, 0) 360deg
-    ) border-box;
+    linear-gradient(115deg, #0f6f9d, #1f9f88) padding-box;
   box-shadow: 0 8px 18px rgba(9, 65, 84, 0.26), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
   isolation: isolate;
   overflow: hidden;
-  animation: studyroom-border-roam 2.2s linear infinite;
 }
 
 .studyroom-btn::before {
@@ -145,42 +136,43 @@ a {
 }
 
 .studyroom-btn::after {
-  content: none;
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1.2px solid transparent;
+  background:
+    linear-gradient(transparent, transparent) padding-box,
+    conic-gradient(
+      from 0deg,
+      rgba(255, 255, 255, 0) 0deg,
+      rgba(255, 255, 255, 0) 304deg,
+      rgba(149, 255, 120, 0.98) 322deg,
+      rgba(255, 236, 92, 1) 338deg,
+      rgba(255, 255, 255, 0) 360deg
+    ) border-box;
+  animation: studyroom-border-roam 2.3s linear infinite;
+  pointer-events: none;
 }
 
 .studyroom-btn:hover {
   transform: translateY(-2px) scale(1.015);
   filter: saturate(1.06);
   box-shadow: 0 12px 26px rgba(7, 71, 92, 0.34), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
-  background:
-    linear-gradient(115deg, #117cac, #22ab93) padding-box,
-    conic-gradient(
-      from var(--studyroom-ring-angle, 0deg),
-      rgba(255, 255, 255, 0) 0deg,
-      rgba(255, 255, 255, 0) 298deg,
-      rgba(149, 255, 120, 0.98) 320deg,
-      rgba(255, 236, 92, 1) 334deg,
-      rgba(255, 255, 255, 0) 360deg
-    ) border-box;
+  background: linear-gradient(115deg, #117cac, #22ab93) padding-box;
 }
 
 .studyroom-btn:active {
   transform: translateY(0) scale(0.99);
 }
 
-@property --studyroom-ring-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
 @keyframes studyroom-border-roam {
   0% {
-    --studyroom-ring-angle: 0deg;
+    transform: rotate(0deg);
   }
 
   100% {
-    --studyroom-ring-angle: 360deg;
+    transform: rotate(360deg);
   }
 }
 
