@@ -14,7 +14,7 @@ body {
   margin: 0;
   color: color-mix(in oklab, var(--color-1) 64%, var(--color-3));
   font-family: var(--font-body), "Segoe UI", sans-serif;
-  background: #101418;
+  background: #1b242c;
   min-height: 100vh;
 }
 
@@ -35,10 +35,10 @@ a {
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(to bottom, rgba(8, 10, 14, 0.42), rgba(8, 10, 14, 0.55)),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08), rgba(17, 28, 36, 0.22)),
     url("/bg/download-4.jfif") center / cover no-repeat;
-  filter: blur(8px);
-  transform: scale(1.05);
+  filter: blur(5px);
+  transform: scale(1.03);
 }
 
 .site-header {
@@ -47,13 +47,13 @@ a {
   z-index: 20;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid color-mix(in oklab, var(--color-1) 18%, transparent);
-  background: rgba(9, 14, 18, 0.56);
+  background: rgba(17, 32, 44, 0.46);
 }
 
 .top-nav {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0.55rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,7 +67,7 @@ a {
 }
 
 .brand-logo {
-  height: 30px;
+  height: 42px;
   width: auto;
 }
 
@@ -76,7 +76,7 @@ a {
   gap: 1rem;
   flex-wrap: wrap;
   font-weight: 600;
-  color: #ecf2f7;
+  color: #f7fbff;
 }
 
 .nav-links a {
@@ -234,6 +234,10 @@ a {
 
   .site-main {
     padding-top: 1.6rem;
+  }
+
+  .brand-logo {
+    height: 36px;
   }
 
   .palette-row {
