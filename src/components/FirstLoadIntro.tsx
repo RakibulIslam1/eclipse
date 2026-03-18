@@ -4,9 +4,11 @@ import { useEffect, useRef, useState } from "react";
 
 const INTRO_START_OFFSET = 0.5;
 const INTRO_PLAYBACK_RATE = 1.08;
+const INTRO_MAX_WAIT_MS = 12000;
 
 export default function FirstLoadIntro() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const finishedRef = useRef(false);
   const [isIntroPlaying, setIsIntroPlaying] = useState(() => {
     if (typeof window === "undefined") {
       return false;
@@ -20,6 +22,17 @@ export default function FirstLoadIntro() {
 
     return isHome && isHardLoad;
   });
+
+  const completeIntro = () => {
+    if (finishedRef.current) {
+      return;
+    }
+
+    finishedRef.current = true;
+    setIsIntroPlaying(false);
+    document.body.classList.remove("video-intro-playing");
+    document.body.classList.add("video-intro-done");
+  };
 
   useEffect(() => {
     const body = document.body;
@@ -37,10 +50,25 @@ export default function FirstLoadIntro() {
     };
   }, [isIntroPlaying]);
 
+  useEffect(() => {
+    if (!isIntroPlaying) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      completeIntro();
+    }, INTRO_MAX_WAIT_MS);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [isIntroPlaying]);
+
   const freezeAtLastFrame = () => {
     const video = videoRef.current;
 
     if (!video || Number.isNaN(video.duration) || !Number.isFinite(video.duration)) {
+      completeIntro();
       return;
     }
 
@@ -48,13 +76,11 @@ export default function FirstLoadIntro() {
     const finalizeFreeze = () => {
       video.pause();
       video.removeEventListener("seeked", finalizeFreeze);
+      completeIntro();
     };
 
     video.addEventListener("seeked", finalizeFreeze, { once: true });
     video.currentTime = targetTime;
-    setIsIntroPlaying(false);
-    document.body.classList.remove("video-intro-playing");
-    document.body.classList.add("video-intro-done");
   };
 
   const handleLoadedMetadata = async () => {
@@ -75,7 +101,7 @@ export default function FirstLoadIntro() {
     try {
       await video.play();
     } catch {
-      freezeAtLastFrame();
+      completeIntro();
     }
   };
 
@@ -89,7 +115,9 @@ export default function FirstLoadIntro() {
           playsInline
           preload="auto"
           onLoadedMetadata={handleLoadedMetadata}
+          onCanPlay={handleLoadedMetadata}
           onEnded={freezeAtLastFrame}
+          onError={completeIntro}
         >
           <source src="/bg/bg_vdo.mp4" type="video/mp4" />
         </video>
