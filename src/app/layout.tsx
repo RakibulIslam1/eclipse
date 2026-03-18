@@ -20,9 +20,9 @@ export const metadata: Metadata = {
   title: "Eclipse Academy",
   description: "Learning website with courses, mentors, team, and study room.",
   icons: {
-    icon: "/brand/favicon.png",
-    shortcut: "/brand/favicon.png",
-    apple: "/brand/favicon.png",
+    icon: "/brand/favicon.png?v=20260319",
+    shortcut: "/brand/favicon.png?v=20260319",
+    apple: "/brand/favicon.png?v=20260319",
   },
 };
 
