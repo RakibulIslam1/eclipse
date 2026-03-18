@@ -150,9 +150,9 @@ a {
 }
 
 .nav-links-right .studyroom-btn:hover {
-  transform: translateY(-2px) scale(1.015);
-  filter: saturate(1.06);
-  box-shadow: 0 12px 26px rgba(7, 71, 92, 0.34), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+  transform: none;
+  filter: none;
+  box-shadow: 0 8px 18px rgba(9, 65, 84, 0.26), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
   background:
     linear-gradient(115deg, #e6a384, #d98969) padding-box,
     linear-gradient(
