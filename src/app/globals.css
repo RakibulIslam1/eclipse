@@ -117,7 +117,7 @@ a {
   border-radius: 999px;
   color: #ffffff;
   background: linear-gradient(115deg, #0f6f9d, #1f9f88);
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.28);
   box-shadow: 0 8px 18px rgba(9, 65, 84, 0.26), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
   isolation: isolate;
@@ -139,20 +139,21 @@ a {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  padding: 1.4px;
+  padding: 1.2px;
   background: conic-gradient(
     from 0deg,
-    rgba(255, 255, 255, 0.08),
-    rgba(255, 245, 171, 0.95),
-    rgba(138, 245, 229, 0.9),
-    rgba(255, 255, 255, 0.08)
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(255, 255, 255, 0) 300deg,
+    rgba(255, 248, 196, 0.98) 330deg,
+    rgba(255, 255, 255, 0) 360deg
   );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: studyroom-ring-spin 2.8s linear infinite;
+  opacity: 0.92;
+  animation: studyroom-ring-spin 2.2s linear infinite;
   pointer-events: none;
 }
 
