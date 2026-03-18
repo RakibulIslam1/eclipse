@@ -123,7 +123,8 @@ a {
       from var(--studyroom-ring-angle, 0deg),
       rgba(255, 255, 255, 0) 0deg,
       rgba(255, 255, 255, 0) 305deg,
-      rgba(255, 248, 196, 0.98) 332deg,
+      rgba(168, 255, 137, 0.96) 322deg,
+      rgba(231, 126, 40, 0.98) 336deg,
       rgba(255, 255, 255, 0) 360deg
     ) border-box;
   box-shadow: 0 8px 18px rgba(9, 65, 84, 0.26), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
@@ -157,7 +158,8 @@ a {
       from var(--studyroom-ring-angle, 0deg),
       rgba(255, 255, 255, 0) 0deg,
       rgba(255, 255, 255, 0) 298deg,
-      rgba(255, 248, 196, 1) 330deg,
+      rgba(149, 255, 120, 0.98) 320deg,
+      rgba(255, 236, 92, 1) 334deg,
       rgba(255, 255, 255, 0) 360deg
     ) border-box;
 }
