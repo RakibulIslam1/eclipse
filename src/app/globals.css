@@ -28,6 +28,136 @@ a {
 
 .site-wrap {
   min-height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+
+body.intro-playing .site-wrap {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+body.intro-reveal .site-wrap {
+  animation: content-reveal 760ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 1;
+  background:
+    radial-gradient(circle at 50% 10%, color-mix(in oklab, var(--color-2) 35%, transparent) 0%, transparent 60%),
+    color-mix(in oklab, var(--color-1) 12%, transparent);
+}
+
+.paper-sheet {
+  width: min(68vw, 620px);
+  aspect-ratio: 1.2;
+  border-radius: 999px;
+  transform: translateY(-115vh) scale(0.25) rotate(-14deg);
+  background:
+    linear-gradient(130deg, color-mix(in oklab, var(--color-2) 62%, white), color-mix(in oklab, var(--color-3) 34%, white)),
+    repeating-linear-gradient(
+      45deg,
+      color-mix(in oklab, var(--color-1) 11%, transparent) 0,
+      color-mix(in oklab, var(--color-1) 11%, transparent) 7px,
+      color-mix(in oklab, var(--color-2) 11%, transparent) 7px,
+      color-mix(in oklab, var(--color-2) 11%, transparent) 14px
+    );
+  box-shadow:
+    0 32px 55px color-mix(in oklab, var(--color-1) 38%, transparent),
+    inset 0 1px 0 color-mix(in oklab, white 45%, transparent);
+}
+
+.intro-overlay.stage-drop .paper-sheet {
+  animation: paper-drop 1000ms cubic-bezier(0.18, 0.82, 0.18, 1.08) forwards;
+}
+
+.intro-overlay.stage-unfold .paper-sheet {
+  animation: paper-drop 1000ms cubic-bezier(0.18, 0.82, 0.18, 1.08) forwards,
+    paper-unfold 900ms cubic-bezier(0.2, 0.8, 0.2, 1) 180ms forwards;
+}
+
+.intro-overlay.stage-done {
+  animation: intro-fade 380ms ease forwards;
+}
+
+.paper-memory {
+  position: fixed;
+  inset: -5vh -8vw;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(1.04) rotate(-1.4deg);
+  transition: opacity 900ms ease, transform 1100ms ease;
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--color-2) 15%, transparent),
+      color-mix(in oklab, var(--color-3) 14%, transparent)
+    ),
+    repeating-linear-gradient(
+      -32deg,
+      color-mix(in oklab, var(--color-1) 8%, transparent) 0,
+      color-mix(in oklab, var(--color-1) 8%, transparent) 2px,
+      transparent 2px,
+      transparent 16px
+    );
+}
+
+.paper-memory.visible {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+}
+
+@keyframes paper-drop {
+  0% {
+    transform: translateY(-115vh) scale(0.25) rotate(-14deg);
+  }
+  78% {
+    transform: translateY(4vh) scale(0.26) rotate(6deg);
+  }
+  100% {
+    transform: translateY(-2vh) scale(0.26) rotate(1deg);
+  }
+}
+
+@keyframes paper-unfold {
+  0% {
+    border-radius: 999px;
+    transform: translateY(-2vh) scale(0.26) rotate(1deg);
+  }
+  60% {
+    border-radius: 80px;
+    transform: translateY(-2vh) scale(0.95) rotate(0);
+  }
+  100% {
+    border-radius: 26px;
+    transform: translateY(-2vh) scale(1) rotate(0);
+  }
+}
+
+@keyframes intro-fade {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes content-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
 .site-header {
@@ -227,5 +357,9 @@ a {
 
   .flow-grid > article:nth-child(2n) {
     transform: none;
+  }
+
+  .paper-sheet {
+    width: min(82vw, 540px);
   }
 }

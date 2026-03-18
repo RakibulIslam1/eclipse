@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Space_Grotesk } from "next/font/google";
 import Link from "next/link";
+import FirstLoadIntro from "@/components/FirstLoadIntro";
 import "./globals.css";
 
 const headingFont = Fraunces({
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
+        <FirstLoadIntro />
         <div className="site-wrap">
           <header className="site-header">
             <nav className="top-nav">
