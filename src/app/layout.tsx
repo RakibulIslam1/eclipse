@@ -54,15 +54,15 @@ export default function RootLayout({
                 <Link href="/team">About Us</Link>
               </div>
               <div className="nav-links nav-links-right">
+                <Link href="/studyroom" className="studyroom-btn">
+                  Study Room
+                </Link>
                 <button type="button" className="profile-icon-btn" aria-label="Profile">
                   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <path d="M12 12.1a4.3 4.3 0 1 0-4.3-4.3 4.3 4.3 0 0 0 4.3 4.3Z" />
                     <path d="M4.5 20a7.5 7.5 0 0 1 15 0v.5h-15Z" />
                   </svg>
                 </button>
-                <Link href="/studyroom" className="studyroom-btn">
-                  Study Room
-                </Link>
               </div>
             </nav>
           </header>

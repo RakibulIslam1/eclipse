@@ -92,11 +92,14 @@ a {
 }
 
 .nav-links-right {
+  align-items: center;
+  gap: 0.65rem;
   justify-content: flex-end;
   min-width: 140px;
 }
 
 .profile-icon-btn {
+  position: relative;
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 999px;
@@ -112,6 +115,17 @@ a {
   transition: background-color 180ms ease, box-shadow 180ms ease;
 }
 
+.profile-icon-btn::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 1px solid rgba(95, 173, 184, 0.5);
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
 .profile-icon-btn svg {
   width: 0.95rem;
   height: 0.95rem;
@@ -121,6 +135,11 @@ a {
 .profile-icon-btn:hover {
   background: linear-gradient(140deg, #116874, #0b5560);
   box-shadow: 0 8px 16px rgba(7, 51, 58, 0.26);
+}
+
+.profile-icon-btn:hover::after {
+  opacity: 1;
+  transform: scale(1.02);
 }
 
 .nav-links a {
@@ -137,6 +156,7 @@ a {
 
 .studyroom-btn {
   position: relative;
+  align-self: center;
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
