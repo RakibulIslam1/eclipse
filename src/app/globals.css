@@ -69,11 +69,14 @@ a {
   display: inline-flex;
   align-items: center;
   line-height: 0;
+  overflow: visible;
 }
 
 .brand-logo {
-  height: 64px;
+  height: 88px;
   width: auto;
+  transform: scale(1.14);
+  transform-origin: left center;
 }
 
 .nav-links {
@@ -260,7 +263,8 @@ a {
   }
 
   .brand-logo {
-    height: 52px;
+    height: 60px;
+    transform: scale(1.1);
   }
 
   .palette-row {
