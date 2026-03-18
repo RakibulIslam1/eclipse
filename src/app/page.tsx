@@ -1,5 +1,6 @@
 import { adminProfile } from "@/lib/admin-profile";
 import ThemePalette from "@/components/ThemePalette";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -15,6 +16,9 @@ export default function Home() {
           <span className="pill">Admin: {adminProfile.email}</span>
           <span className="pill">Role: {adminProfile.role}</span>
           <span className="pill">Theme: 3 editable colors</span>
+          <Link className="ghost-button" href="/?intro=1">
+            Replay Intro
+          </Link>
         </div>
       </section>
 

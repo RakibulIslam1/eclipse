@@ -3,14 +3,28 @@
 import { useEffect, useState } from "react";
 
 type IntroStage = "idle" | "drop" | "unfold" | "done";
+const INTRO_KEY = "eclipse-intro-seen-v2";
+
+const shouldForceIntro = () => {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return new URLSearchParams(window.location.search).get("intro") === "1";
+};
 
 export default function FirstLoadIntro() {
+  const [forceIntro] = useState(shouldForceIntro);
   const [hasSeenIntro] = useState(() => {
     if (typeof window === "undefined") {
       return false;
     }
 
-    return localStorage.getItem("eclipse-intro-seen") === "1";
+    if (shouldForceIntro()) {
+      return false;
+    }
+
+    return localStorage.getItem(INTRO_KEY) === "1";
   });
   const [shouldPlay, setShouldPlay] = useState(!hasSeenIntro);
   const [stage, setStage] = useState<IntroStage>(hasSeenIntro ? "done" : "idle");
@@ -35,7 +49,13 @@ export default function FirstLoadIntro() {
       setShouldPlay(false);
       body.classList.remove("intro-playing");
       body.classList.add("intro-reveal");
-      localStorage.setItem("eclipse-intro-seen", "1");
+      localStorage.setItem(INTRO_KEY, "1");
+
+      if (forceIntro) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("intro");
+        window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+      }
     }, 2350);
     const cleanupRevealId = window.setTimeout(() => {
       body.classList.remove("intro-reveal");
@@ -48,7 +68,7 @@ export default function FirstLoadIntro() {
       window.clearTimeout(doneId);
       window.clearTimeout(cleanupRevealId);
     };
-  }, [hasSeenIntro]);
+  }, [forceIntro, hasSeenIntro]);
 
   return (
     <>
