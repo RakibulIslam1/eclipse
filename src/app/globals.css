@@ -72,10 +72,10 @@ a {
 }
 
 .brand-logo {
-  height: 64px;
+  height: 54px;
   width: auto;
   display: block;
-  padding: 3px 6px;
+  padding: 3px 12px;
 }
 
 .nav-links {
