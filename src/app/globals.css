@@ -154,7 +154,7 @@ a {
   filter: saturate(1.06);
   box-shadow: 0 12px 26px rgba(7, 71, 92, 0.34), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
   background:
-    linear-gradient(115deg, #117cac, #22ab93) padding-box,
+    linear-gradient(115deg, #e6a384, #d98969) padding-box,
     linear-gradient(
       110deg,
       rgba(255, 255, 255, 0) 33%,
