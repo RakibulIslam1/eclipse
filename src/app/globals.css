@@ -14,10 +14,7 @@ body {
   margin: 0;
   color: color-mix(in oklab, var(--color-1) 64%, var(--color-3));
   font-family: var(--font-body), "Segoe UI", sans-serif;
-  background:
-    radial-gradient(circle at 8% 10%, color-mix(in oklab, var(--color-2) 55%, transparent) 0%, transparent 42%),
-    radial-gradient(circle at 92% 20%, color-mix(in oklab, var(--color-3) 50%, transparent) 0%, transparent 36%),
-    linear-gradient(140deg, color-mix(in oklab, var(--color-1) 22%, transparent), color-mix(in oklab, var(--color-2) 18%, transparent));
+  background: #101418;
   min-height: 100vh;
 }
 
@@ -32,49 +29,16 @@ a {
   z-index: 2;
 }
 
-body.video-intro-playing .site-wrap {
-  opacity: 1;
-  transform: none;
-}
-
-body.video-intro-done .site-wrap {
-  animation: content-reveal 760ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
-}
-
-.bg-video-layer {
+.bg-photo-layer {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  overflow: hidden;
-}
-
-.bg-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.bg-video-mask {
-  position: absolute;
-  inset: 0;
   background:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.18)),
-    radial-gradient(circle at 14% 9%, color-mix(in oklab, var(--color-2) 22%, transparent), transparent 42%),
-    radial-gradient(circle at 86% 14%, color-mix(in oklab, var(--color-3) 24%, transparent), transparent 40%);
-}
-
-@keyframes content-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(22px);
-    filter: blur(3px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
+    linear-gradient(to bottom, rgba(8, 10, 14, 0.42), rgba(8, 10, 14, 0.55)),
+    url("/bg/download-4.jfif") center / cover no-repeat;
+  filter: blur(8px);
+  transform: scale(1.05);
 }
 
 .site-header {
@@ -83,13 +47,13 @@ body.video-intro-done .site-wrap {
   z-index: 20;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid color-mix(in oklab, var(--color-1) 18%, transparent);
-  background: color-mix(in oklab, var(--color-1) 8%, transparent);
+  background: rgba(9, 14, 18, 0.56);
 }
 
 .top-nav {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 1rem 1.25rem;
+  padding: 0.55rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -97,11 +61,14 @@ body.video-intro-done .site-wrap {
 }
 
 .brand {
-  font-family: var(--font-heading), Georgia, serif;
-  font-size: 1.6rem;
-  letter-spacing: 0.03em;
-  color: color-mix(in oklab, var(--color-1) 78%, var(--color-3));
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.brand-logo {
+  height: 30px;
+  width: auto;
 }
 
 .nav-links {
@@ -109,6 +76,7 @@ body.video-intro-done .site-wrap {
   gap: 1rem;
   flex-wrap: wrap;
   font-weight: 600;
+  color: #ecf2f7;
 }
 
 .nav-links a {
@@ -274,12 +242,5 @@ body.video-intro-done .site-wrap {
 
   .flow-grid > article:nth-child(2n) {
     transform: none;
-  }
-
-  .bg-video-mask {
-    background:
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.22)),
-      radial-gradient(circle at 20% 11%, color-mix(in oklab, var(--color-2) 18%, transparent), transparent 44%),
-      radial-gradient(circle at 84% 12%, color-mix(in oklab, var(--color-3) 18%, transparent), transparent 42%);
   }
 }

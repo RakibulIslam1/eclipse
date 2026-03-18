@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Space_Grotesk } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
-import FirstLoadIntro from "@/components/FirstLoadIntro";
 import "./globals.css";
 
 const headingFont = Fraunces({
@@ -19,6 +19,11 @@ const bodyFont = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Eclipse Academy",
   description: "Learning website with courses, mentors, team, and study room.",
+  icons: {
+    icon: "/brand/favicon.png",
+    shortcut: "/brand/favicon.png",
+    apple: "/brand/favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -29,12 +34,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
-        <FirstLoadIntro />
+        <div className="bg-photo-layer" aria-hidden="true" />
         <div className="site-wrap">
           <header className="site-header">
             <nav className="top-nav">
               <Link href="/" className="brand" aria-label="Eclipse Academy home">
-                Eclipse
+                <Image
+                  src="/brand/navbar_logo.png"
+                  alt="Eclipse"
+                  width={136}
+                  height={34}
+                  className="brand-logo"
+                  priority
+                />
               </Link>
               <div className="nav-links">
                 <Link href="/courses">Courses</Link>
