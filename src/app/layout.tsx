@@ -54,7 +54,9 @@ export default function RootLayout({
                 <Link href="/team">Team</Link>
               </div>
               <div className="nav-links nav-links-right">
-                <Link href="/studyroom">Study Room</Link>
+                <Link href="/studyroom" className="studyroom-btn">
+                  Study Room
+                </Link>
               </div>
             </nav>
           </header>
