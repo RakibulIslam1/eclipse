@@ -74,6 +74,12 @@ export default function FirstLoadIntro() {
           <div className="paper-bundle">
             <span className="ribbon ribbon-x" />
             <span className="ribbon ribbon-y" />
+            <span className="fold fold-top" />
+            <span className="fold fold-bottom" />
+            <span className="fold fold-left" />
+            <span className="fold fold-right" />
+            <span className="seam seam-x" />
+            <span className="seam seam-y" />
             <div className="paper-core" />
           </div>
         </div>

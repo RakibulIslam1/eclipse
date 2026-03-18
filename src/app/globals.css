@@ -50,48 +50,119 @@ body.intro-reveal .site-wrap {
   pointer-events: none;
   opacity: 1;
   background:
-    radial-gradient(circle at 50% 10%, color-mix(in oklab, var(--color-2) 35%, transparent) 0%, transparent 60%),
-    color-mix(in oklab, var(--color-1) 12%, transparent);
+    radial-gradient(circle at 50% 10%, color-mix(in oklab, var(--color-2) 22%, transparent) 0%, transparent 58%),
+    color-mix(in oklab, var(--color-1) 16%, transparent);
 }
 
 .paper-bundle {
-  width: min(68vw, 620px);
-  aspect-ratio: 1.2;
-  transform: translateY(-115vh) scale(0.25) rotate(-14deg);
+  width: min(62vw, 560px);
+  aspect-ratio: 1.32;
+  transform: translateY(-115vh) scale(0.3) rotate(-10deg);
   position: relative;
+  filter: drop-shadow(0 26px 38px rgba(0, 0, 0, 0.28));
+  transform-style: preserve-3d;
 }
 
 .paper-core {
   width: 100%;
   height: 100%;
-  border-radius: 42% 58% 52% 48% / 42% 52% 48% 58%;
-  transform: rotate(-2deg);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
   background:
-    radial-gradient(circle at 30% 26%, color-mix(in oklab, white 30%, transparent), transparent 40%),
-    linear-gradient(130deg, color-mix(in oklab, var(--color-2) 62%, white), color-mix(in oklab, var(--color-3) 34%, white)),
+    radial-gradient(circle at 72% 12%, rgba(255, 255, 255, 0.22), transparent 42%),
+    linear-gradient(145deg, #d4bb91, #c4a578),
     repeating-linear-gradient(
-      45deg,
-      color-mix(in oklab, var(--color-1) 11%, transparent) 0,
-      color-mix(in oklab, var(--color-1) 11%, transparent) 7px,
-      color-mix(in oklab, var(--color-2) 11%, transparent) 7px,
-      color-mix(in oklab, var(--color-2) 11%, transparent) 14px
+      18deg,
+      rgba(95, 72, 46, 0.04) 0,
+      rgba(95, 72, 46, 0.04) 2px,
+      transparent 2px,
+      transparent 7px
     );
   box-shadow:
-    0 32px 55px color-mix(in oklab, var(--color-1) 38%, transparent),
-    inset 0 1px 0 color-mix(in oklab, white 45%, transparent);
+    inset 0 0 0 1px rgba(80, 58, 34, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -26px 38px rgba(82, 62, 38, 0.12);
+}
+
+.fold,
+.seam {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.fold {
+  background: linear-gradient(150deg, #b99669, #a98557);
+  box-shadow: inset 0 0 0 1px rgba(77, 56, 34, 0.38);
+}
+
+.fold-top,
+.fold-bottom {
+  left: 3%;
+  width: 94%;
+  height: 22%;
+}
+
+.fold-top {
+  top: 0;
+  transform-origin: top center;
+  clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%);
+}
+
+.fold-bottom {
+  bottom: 0;
+  transform-origin: bottom center;
+  clip-path: polygon(12% 0, 88% 0, 100% 100%, 0 100%);
+}
+
+.fold-left,
+.fold-right {
+  top: 3%;
+  height: 94%;
+  width: 19%;
+}
+
+.fold-left {
+  left: 0;
+  transform-origin: left center;
+  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 92%);
+}
+
+.fold-right {
+  right: 0;
+  transform-origin: right center;
+  clip-path: polygon(0 0, 100% 8%, 100% 92%, 0 100%);
+}
+
+.seam {
+  background: linear-gradient(180deg, rgba(94, 67, 41, 0.4), rgba(64, 44, 27, 0.15));
+  opacity: 0.55;
+}
+
+.seam-x {
+  left: 10%;
+  right: 10%;
+  top: 49%;
+  height: 1.6%;
+}
+
+.seam-y {
+  top: 10%;
+  bottom: 10%;
+  left: 49.4%;
+  width: 1.4%;
 }
 
 .ribbon {
   position: absolute;
-  border-radius: 999px;
+  border-radius: 4px;
   background:
-    linear-gradient(
-      120deg,
-      color-mix(in oklab, var(--color-1) 58%, black),
-      color-mix(in oklab, var(--color-1) 45%, var(--color-3))
-    );
-  box-shadow: 0 10px 24px color-mix(in oklab, var(--color-1) 35%, transparent);
-  z-index: 3;
+    linear-gradient(130deg, #8b6740, #6e5235 50%, #8a6540);
+  box-shadow:
+    inset 0 0 0 1px rgba(54, 38, 24, 0.56),
+    0 8px 20px rgba(45, 31, 18, 0.24);
+  z-index: 6;
 }
 
 .ribbon-x {
@@ -104,7 +175,7 @@ body.intro-reveal .site-wrap {
 .ribbon-y {
   top: 10%;
   bottom: 10%;
-  left: 45.5%;
+  left: 46%;
   width: 9%;
 }
 
@@ -118,11 +189,31 @@ body.intro-reveal .site-wrap {
 }
 
 .intro-overlay.stage-unfold .ribbon-x {
-  animation: ribbon-unroll-x 650ms ease 150ms forwards;
+  animation: ribbon-unroll-x 620ms ease-in 80ms forwards;
 }
 
 .intro-overlay.stage-unfold .ribbon-y {
-  animation: ribbon-unroll-y 650ms ease 220ms forwards;
+  animation: ribbon-unroll-y 620ms ease-in 140ms forwards;
+}
+
+.intro-overlay.stage-unfold .fold-top {
+  animation: fold-top-open 660ms cubic-bezier(0.2, 0.82, 0.22, 1) 220ms forwards;
+}
+
+.intro-overlay.stage-unfold .fold-bottom {
+  animation: fold-bottom-open 660ms cubic-bezier(0.2, 0.82, 0.22, 1) 280ms forwards;
+}
+
+.intro-overlay.stage-unfold .fold-left {
+  animation: fold-left-open 620ms cubic-bezier(0.2, 0.82, 0.22, 1) 350ms forwards;
+}
+
+.intro-overlay.stage-unfold .fold-right {
+  animation: fold-right-open 620ms cubic-bezier(0.2, 0.82, 0.22, 1) 410ms forwards;
+}
+
+.intro-overlay.stage-unfold .seam {
+  animation: seam-fade 420ms ease 260ms forwards;
 }
 
 .intro-overlay.stage-done {
@@ -159,22 +250,22 @@ body.intro-reveal .site-wrap {
 
 @keyframes paper-drop {
   0% {
-    transform: translateY(-115vh) scale(0.25) rotate(-14deg);
+    transform: translateY(-115vh) scale(0.3) rotate(-10deg);
   }
   78% {
-    transform: translateY(4vh) scale(0.26) rotate(6deg);
+    transform: translateY(3.5vh) scale(0.31) rotate(5deg);
   }
   100% {
-    transform: translateY(-2vh) scale(0.26) rotate(1deg);
+    transform: translateY(-2vh) scale(0.31) rotate(1deg);
   }
 }
 
 @keyframes paper-unfold {
   0% {
-    transform: translateY(-2vh) scale(0.26) rotate(1deg);
+    transform: translateY(-2vh) scale(0.31) rotate(1deg);
   }
   60% {
-    transform: translateY(-2vh) scale(0.95) rotate(0);
+    transform: translateY(-2vh) scale(0.92) rotate(0);
   }
   100% {
     transform: translateY(-2vh) scale(1) rotate(0);
@@ -184,14 +275,48 @@ body.intro-reveal .site-wrap {
 @keyframes ribbon-unroll-x {
   to {
     opacity: 0;
-    transform: translateY(-70px) scaleX(1.16);
+    transform: translateY(-84px) scaleX(1.08);
   }
 }
 
 @keyframes ribbon-unroll-y {
   to {
     opacity: 0;
-    transform: translateX(64px) scaleY(1.2);
+    transform: translateX(78px) scaleY(1.12);
+  }
+}
+
+@keyframes fold-top-open {
+  to {
+    transform: rotateX(-142deg);
+    opacity: 0.12;
+  }
+}
+
+@keyframes fold-bottom-open {
+  to {
+    transform: rotateX(142deg);
+    opacity: 0.12;
+  }
+}
+
+@keyframes fold-left-open {
+  to {
+    transform: rotateY(132deg);
+    opacity: 0.1;
+  }
+}
+
+@keyframes fold-right-open {
+  to {
+    transform: rotateY(-132deg);
+    opacity: 0.1;
+  }
+}
+
+@keyframes seam-fade {
+  to {
+    opacity: 0;
   }
 }
 
@@ -414,6 +539,6 @@ body.intro-reveal .site-wrap {
   }
 
   .paper-bundle {
-    width: min(82vw, 540px);
+    width: min(84vw, 510px);
   }
 }
