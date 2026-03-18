@@ -117,7 +117,7 @@ a {
   border-radius: 999px;
   color: #ffffff;
   background: linear-gradient(115deg, #0f6f9d, #1f9f88);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid transparent;
   box-shadow: 0 8px 18px rgba(9, 65, 84, 0.26), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
   isolation: isolate;
@@ -139,10 +139,21 @@ a {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0));
-  transform: translateX(-130%);
-  transition: transform 420ms ease;
-  z-index: -1;
+  padding: 1.4px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 245, 171, 0.95),
+    rgba(138, 245, 229, 0.9),
+    rgba(255, 255, 255, 0.08)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: studyroom-ring-spin 2.8s linear infinite;
+  pointer-events: none;
 }
 
 .studyroom-btn:hover {
@@ -152,12 +163,18 @@ a {
   background: linear-gradient(115deg, #117cac, #22ab93);
 }
 
-.studyroom-btn:hover::after {
-  transform: translateX(130%);
-}
-
 .studyroom-btn:active {
   transform: translateY(0) scale(0.99);
+}
+
+@keyframes studyroom-ring-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes studyroom-pulse {
