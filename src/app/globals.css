@@ -54,12 +54,20 @@ body.intro-reveal .site-wrap {
     color-mix(in oklab, var(--color-1) 12%, transparent);
 }
 
-.paper-sheet {
+.paper-bundle {
   width: min(68vw, 620px);
   aspect-ratio: 1.2;
-  border-radius: 999px;
   transform: translateY(-115vh) scale(0.25) rotate(-14deg);
+  position: relative;
+}
+
+.paper-core {
+  width: 100%;
+  height: 100%;
+  border-radius: 42% 58% 52% 48% / 42% 52% 48% 58%;
+  transform: rotate(-2deg);
   background:
+    radial-gradient(circle at 30% 26%, color-mix(in oklab, white 30%, transparent), transparent 40%),
     linear-gradient(130deg, color-mix(in oklab, var(--color-2) 62%, white), color-mix(in oklab, var(--color-3) 34%, white)),
     repeating-linear-gradient(
       45deg,
@@ -73,13 +81,48 @@ body.intro-reveal .site-wrap {
     inset 0 1px 0 color-mix(in oklab, white 45%, transparent);
 }
 
-.intro-overlay.stage-drop .paper-sheet {
+.ribbon {
+  position: absolute;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      120deg,
+      color-mix(in oklab, var(--color-1) 58%, black),
+      color-mix(in oklab, var(--color-1) 45%, var(--color-3))
+    );
+  box-shadow: 0 10px 24px color-mix(in oklab, var(--color-1) 35%, transparent);
+  z-index: 3;
+}
+
+.ribbon-x {
+  left: 10%;
+  right: 10%;
+  top: 44%;
+  height: 13%;
+}
+
+.ribbon-y {
+  top: 10%;
+  bottom: 10%;
+  left: 45.5%;
+  width: 9%;
+}
+
+.intro-overlay.stage-drop .paper-bundle {
   animation: paper-drop 1000ms cubic-bezier(0.18, 0.82, 0.18, 1.08) forwards;
 }
 
-.intro-overlay.stage-unfold .paper-sheet {
+.intro-overlay.stage-unfold .paper-bundle {
   animation: paper-drop 1000ms cubic-bezier(0.18, 0.82, 0.18, 1.08) forwards,
     paper-unfold 900ms cubic-bezier(0.2, 0.8, 0.2, 1) 180ms forwards;
+}
+
+.intro-overlay.stage-unfold .ribbon-x {
+  animation: ribbon-unroll-x 650ms ease 150ms forwards;
+}
+
+.intro-overlay.stage-unfold .ribbon-y {
+  animation: ribbon-unroll-y 650ms ease 220ms forwards;
 }
 
 .intro-overlay.stage-done {
@@ -128,16 +171,27 @@ body.intro-reveal .site-wrap {
 
 @keyframes paper-unfold {
   0% {
-    border-radius: 999px;
     transform: translateY(-2vh) scale(0.26) rotate(1deg);
   }
   60% {
-    border-radius: 80px;
     transform: translateY(-2vh) scale(0.95) rotate(0);
   }
   100% {
-    border-radius: 26px;
     transform: translateY(-2vh) scale(1) rotate(0);
+  }
+}
+
+@keyframes ribbon-unroll-x {
+  to {
+    opacity: 0;
+    transform: translateY(-70px) scaleX(1.16);
+  }
+}
+
+@keyframes ribbon-unroll-y {
+  to {
+    opacity: 0;
+    transform: translateX(64px) scaleY(1.2);
   }
 }
 
@@ -359,7 +413,7 @@ body.intro-reveal .site-wrap {
     transform: none;
   }
 
-  .paper-sheet {
+  .paper-bundle {
     width: min(82vw, 540px);
   }
 }
