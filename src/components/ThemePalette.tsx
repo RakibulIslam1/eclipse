@@ -17,27 +17,28 @@ const defaults: ThemeColor[] = [
 const isHex = (value: string) => /^#[0-9A-Fa-f]{6}$/.test(value);
 
 export default function ThemePalette() {
-  const [colors, setColors] = useState<ThemeColor[]>(() => {
-    if (typeof window === "undefined") {
-      return defaults;
-    }
+  // Keep initial render deterministic to avoid hydration mismatch.
+  const [colors, setColors] = useState<ThemeColor[]>(defaults);
 
+  useEffect(() => {
     const fromStorage = localStorage.getItem("eclipse-theme-colors");
 
     if (!fromStorage) {
-      return defaults;
+      return;
     }
 
     try {
       const parsed = JSON.parse(fromStorage) as ThemeColor[];
-      return defaults.map((item) => {
+      const restored = defaults.map((item) => {
         const found = parsed.find((p) => p.key === item.key);
         return found && isHex(found.value) ? { ...item, value: found.value.toUpperCase() } : item;
       });
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setColors(restored);
     } catch {
-      return defaults;
+      // Ignore invalid localStorage payload and keep defaults.
     }
-  });
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("eclipse-theme-colors", JSON.stringify(colors));
