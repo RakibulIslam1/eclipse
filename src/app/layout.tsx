@@ -42,8 +42,8 @@ export default function RootLayout({
                 <Image
                   src="/brand/navbar_logo.png"
                   alt="Eclipse"
-                  width={248}
-                  height={62}
+                  width={310}
+                  height={78}
                   className="brand-logo"
                   priority
                 />

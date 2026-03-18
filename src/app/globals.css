@@ -72,7 +72,7 @@ a {
 }
 
 .brand-logo {
-  height: 52px;
+  height: 64px;
   width: auto;
 }
 
@@ -81,7 +81,7 @@ a {
   gap: 1rem;
   flex-wrap: wrap;
   font-weight: 600;
-  color: #f7fbff;
+  color: #0f1114;
 }
 
 .nav-links-center {
@@ -260,7 +260,7 @@ a {
   }
 
   .brand-logo {
-    height: 46px;
+    height: 52px;
   }
 
   .palette-row {
