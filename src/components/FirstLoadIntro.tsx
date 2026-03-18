@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const INTRO_START_OFFSET = 0.5;
+const INTRO_PLAYBACK_RATE = 1.08;
+
 export default function FirstLoadIntro() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isIntroPlaying, setIsIntroPlaying] = useState(() => {
@@ -41,8 +44,14 @@ export default function FirstLoadIntro() {
       return;
     }
 
-    video.currentTime = Math.max(video.duration - 0.04, 0);
-    video.pause();
+    const targetTime = Math.max(video.duration - 0.001, INTRO_START_OFFSET);
+    const finalizeFreeze = () => {
+      video.pause();
+      video.removeEventListener("seeked", finalizeFreeze);
+    };
+
+    video.addEventListener("seeked", finalizeFreeze, { once: true });
+    video.currentTime = targetTime;
     setIsIntroPlaying(false);
     document.body.classList.remove("video-intro-playing");
     document.body.classList.add("video-intro-done");
@@ -60,7 +69,8 @@ export default function FirstLoadIntro() {
       return;
     }
 
-    video.currentTime = 0;
+    video.currentTime = Math.min(INTRO_START_OFFSET, Math.max(video.duration - 0.001, 0));
+    video.playbackRate = INTRO_PLAYBACK_RATE;
 
     try {
       await video.play();
