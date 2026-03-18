@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const INTRO_START_OFFSET = 0.5;
 const INTRO_PLAYBACK_RATE = 1.08;
-const INTRO_MAX_WAIT_MS = 12000;
+const INTRO_MAX_WAIT_MS = 4500;
 
 export default function FirstLoadIntro() {
   const videoRef = useRef<HTMLVideoElement>(null);
