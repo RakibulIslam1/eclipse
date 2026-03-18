@@ -118,11 +118,21 @@ a {
   color: #ffffff;
   border: 1.2px solid transparent;
   background:
-    linear-gradient(115deg, #0f6f9d, #1f9f88) padding-box;
+    linear-gradient(115deg, #0f6f9d, #1f9f88) padding-box,
+    linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0) 34%,
+      rgba(27, 105, 82, 0.98) 47%,
+      rgb(243, 146, 35) 53%,
+      rgba(255, 255, 255, 0) 66%
+    ) border-box;
+  background-size: 100% 100%, 260% 260%;
+  background-position: 0 0, 180% 50%;
   box-shadow: 0 8px 18px rgba(9, 65, 84, 0.26), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
   isolation: isolate;
   overflow: hidden;
+  animation: studyroom-border-roam 2.3s linear infinite;
 }
 
 .studyroom-btn::before {
@@ -131,35 +141,27 @@ a {
   height: 0.52rem;
   border-radius: 999px;
   background: #fff1a8;
-  box-shadow: 0 0 10px rgba(255, 241, 168, 0.95);
+  box-shadow: 0 0 10px rgba(238, 145, 59, 0.95);
   animation: studyroom-pulse 1.8s ease-in-out infinite;
 }
 
 .studyroom-btn::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  border: 1.2px solid transparent;
-  background:
-    linear-gradient(transparent, transparent) padding-box,
-    conic-gradient(
-      from 0deg,
-      rgba(255, 255, 255, 0) 0deg,
-      rgba(255, 255, 255, 0) 304deg,
-      rgba(149, 255, 120, 0.98) 322deg,
-      rgba(255, 236, 92, 1) 338deg,
-      rgba(255, 255, 255, 0) 360deg
-    ) border-box;
-  animation: studyroom-border-roam 2.3s linear infinite;
-  pointer-events: none;
+  content: none;
 }
 
 .studyroom-btn:hover {
   transform: translateY(-2px) scale(1.015);
   filter: saturate(1.06);
   box-shadow: 0 12px 26px rgba(7, 71, 92, 0.34), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
-  background: linear-gradient(115deg, #117cac, #22ab93) padding-box;
+  background:
+    linear-gradient(115deg, #117cac, #22ab93) padding-box,
+    linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0) 33%,
+      rgb(19, 93, 99) 46%,
+      rgb(241, 157, 77) 53%,
+      rgba(255, 255, 255, 0) 67%
+    ) border-box;
 }
 
 .studyroom-btn:active {
@@ -168,11 +170,11 @@ a {
 
 @keyframes studyroom-border-roam {
   0% {
-    transform: rotate(0deg);
+    background-position: 0 0, 180% 50%;
   }
 
   100% {
-    transform: rotate(360deg);
+    background-position: 0 0, -180% 50%;
   }
 }
 
