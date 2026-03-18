@@ -96,6 +96,33 @@ a {
   min-width: 140px;
 }
 
+.profile-icon-btn {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(3, 76, 84, 0.3);
+  background: linear-gradient(140deg, #0c555f, #09464f);
+  color: #e8f7f7;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(7, 51, 58, 0.22);
+  transition: background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.profile-icon-btn svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: currentColor;
+}
+
+.profile-icon-btn:hover {
+  background: linear-gradient(140deg, #116874, #0b5560);
+  box-shadow: 0 8px 16px rgba(7, 51, 58, 0.26);
+}
+
 .nav-links a {
   padding: 0.4rem 0.8rem;
   border-radius: 999px;
