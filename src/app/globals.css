@@ -116,12 +116,21 @@ a {
   padding: 0.5rem 1rem 0.5rem 0.9rem;
   border-radius: 999px;
   color: #ffffff;
-  background: linear-gradient(115deg, #0f6f9d, #1f9f88);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1.2px solid transparent;
+  background:
+    linear-gradient(115deg, #0f6f9d, #1f9f88) padding-box,
+    conic-gradient(
+      from var(--studyroom-ring-angle, 0deg),
+      rgba(255, 255, 255, 0) 0deg,
+      rgba(255, 255, 255, 0) 305deg,
+      rgba(255, 248, 196, 0.98) 332deg,
+      rgba(255, 255, 255, 0) 360deg
+    ) border-box;
   box-shadow: 0 8px 18px rgba(9, 65, 84, 0.26), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
   isolation: isolate;
   overflow: hidden;
+  animation: studyroom-border-roam 2.2s linear infinite;
 }
 
 .studyroom-btn::before {
@@ -135,46 +144,41 @@ a {
 }
 
 .studyroom-btn::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1.2px;
-  background: conic-gradient(
-    from 0deg,
-    rgba(255, 255, 255, 0) 0deg,
-    rgba(255, 255, 255, 0) 300deg,
-    rgba(255, 248, 196, 0.98) 330deg,
-    rgba(255, 255, 255, 0) 360deg
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0.92;
-  animation: studyroom-ring-spin 2.2s linear infinite;
-  pointer-events: none;
+  content: none;
 }
 
 .studyroom-btn:hover {
   transform: translateY(-2px) scale(1.015);
   filter: saturate(1.06);
   box-shadow: 0 12px 26px rgba(7, 71, 92, 0.34), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
-  background: linear-gradient(115deg, #117cac, #22ab93);
+  background:
+    linear-gradient(115deg, #117cac, #22ab93) padding-box,
+    conic-gradient(
+      from var(--studyroom-ring-angle, 0deg),
+      rgba(255, 255, 255, 0) 0deg,
+      rgba(255, 255, 255, 0) 298deg,
+      rgba(255, 248, 196, 1) 330deg,
+      rgba(255, 255, 255, 0) 360deg
+    ) border-box;
 }
 
 .studyroom-btn:active {
   transform: translateY(0) scale(0.99);
 }
 
-@keyframes studyroom-ring-spin {
+@property --studyroom-ring-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes studyroom-border-roam {
   0% {
-    transform: rotate(0deg);
+    --studyroom-ring-angle: 0deg;
   }
 
   100% {
-    transform: rotate(360deg);
+    --studyroom-ring-angle: 360deg;
   }
 }
 
