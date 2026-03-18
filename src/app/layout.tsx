@@ -42,16 +42,18 @@ export default function RootLayout({
                 <Image
                   src="/brand/navbar_logo.png"
                   alt="Eclipse"
-                  width={196}
-                  height={48}
+                  width={248}
+                  height={62}
                   className="brand-logo"
                   priority
                 />
               </Link>
-              <div className="nav-links">
+              <div className="nav-links nav-links-center">
                 <Link href="/courses">Courses</Link>
                 <Link href="/mentors">Mentors</Link>
                 <Link href="/team">Team</Link>
+              </div>
+              <div className="nav-links nav-links-right">
                 <Link href="/studyroom">Study Room</Link>
               </div>
             </nav>
