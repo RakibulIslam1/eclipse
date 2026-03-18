@@ -149,7 +149,7 @@ a {
   content: none;
 }
 
-.studyroom-btn:hover {
+.nav-links-right .studyroom-btn:hover {
   transform: translateY(-2px) scale(1.015);
   filter: saturate(1.06);
   box-shadow: 0 12px 26px rgba(7, 71, 92, 0.34), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
