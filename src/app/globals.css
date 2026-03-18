@@ -58,7 +58,7 @@ a {
 .top-nav {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0.14rem 1rem;
+  padding: 0.08rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -72,7 +72,7 @@ a {
 }
 
 .brand-logo {
-  height: 54px;
+  height: 48px;
   width: auto;
   display: block;
   padding: 3px 12px;
@@ -263,7 +263,7 @@ a {
   }
 
   .brand-logo {
-    height: 44px;
+    height: 38px;
   }
 
   .palette-row {
