@@ -72,9 +72,10 @@ a {
 }
 
 .brand-logo {
-  height: 75px;
+  height: 68px;
   width: auto;
   display: block;
+  padding: 3px 6px;
 }
 
 .nav-links {
@@ -262,7 +263,7 @@ a {
   }
 
   .brand-logo {
-    height: 48px;
+    height: 46px;
   }
 
   .palette-row {
