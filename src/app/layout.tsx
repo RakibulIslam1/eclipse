@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import LandingIntroGate from "@/components/LandingIntroGate";
 import PullLightSwitch from "@/components/PullLightSwitch";
 import "./globals.css";
 
@@ -35,6 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
+        <LandingIntroGate />
         <div className="bg-photo-layer" aria-hidden="true" />
         <PullLightSwitch />
         <div className="site-wrap">
