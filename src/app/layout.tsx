@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import PullLightSwitch from "@/components/PullLightSwitch";
 import "./globals.css";
 
 const headingFont = Poppins({
@@ -35,6 +36,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
         <div className="bg-photo-layer" aria-hidden="true" />
+        <PullLightSwitch />
         <div className="site-wrap">
           <header className="site-header">
             <nav className="top-nav">
