@@ -44,14 +44,14 @@ a {
   position: sticky;
   top: 0;
   z-index: 20;
-  backdrop-filter: blur(13px) saturate(120%);
-  border-bottom: 1px solid color-mix(in oklab, var(--color-1) 26%, white);
+  backdrop-filter: blur(14px) saturate(125%);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-1) 14%, white);
   background: linear-gradient(
     90deg,
-    color-mix(in oklab, var(--color-1) 18%, rgba(255, 255, 255, 0.72)),
-    color-mix(in oklab, var(--color-3) 10%, rgba(255, 255, 255, 0.76))
+    color-mix(in oklab, var(--color-1) 10%, rgba(255, 255, 255, 0.9)),
+    color-mix(in oklab, var(--color-3) 6%, rgba(255, 255, 255, 0.92))
   );
-  box-shadow: 0 8px 24px rgba(20, 38, 54, 0.12);
+  box-shadow: 0 8px 24px rgba(20, 38, 54, 0.08);
 }
 
 .top-nav {
