@@ -14,7 +14,6 @@ export default function PullLightSwitch() {
     const prefersDark = stored === "dark";
 
     document.body.classList.toggle("theme-dark", prefersDark);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsDark(prefersDark);
 
     return () => {

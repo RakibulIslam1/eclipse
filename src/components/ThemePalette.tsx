@@ -33,7 +33,6 @@ export default function ThemePalette() {
         const found = parsed.find((p) => p.key === item.key);
         return found && isHex(found.value) ? { ...item, value: found.value.toUpperCase() } : item;
       });
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setColors(restored);
     } catch {
       // Ignore invalid localStorage payload and keep defaults.
