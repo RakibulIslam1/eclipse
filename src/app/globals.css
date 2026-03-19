@@ -38,7 +38,7 @@ a {
 .pull-switch {
   position: fixed;
   right: 0.95rem;
-  top: 4.8rem;
+  top: 4.5rem;
   z-index: 40;
   width: 2.7rem;
   border: none;
@@ -73,11 +73,13 @@ a {
 .pull-switch-glow {
   position: absolute;
   top: 78px;
+  left: 50%;
   width: 3.2rem;
   height: 3.2rem;
   border-radius: 999px;
   background: radial-gradient(circle, rgba(255, 249, 194, 0.68), rgba(255, 249, 194, 0));
   filter: blur(2px);
+  transform: translateX(-50%);
   opacity: 0.9;
   animation: pull-switch-light-breathe 2.2s ease-in-out infinite;
   pointer-events: none;
@@ -100,12 +102,12 @@ a {
 @keyframes pull-switch-light-breathe {
   0%,
   100% {
-    transform: scale(1);
+    transform: translateX(-50%) scale(1);
     opacity: 0.78;
   }
 
   50% {
-    transform: scale(1.17);
+    transform: translateX(-50%) scale(1.17);
     opacity: 1;
   }
 }
