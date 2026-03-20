@@ -17,13 +17,13 @@ export default function PullLightSwitch() {
       return;
     }
 
-    const radius = 320;
-    const maxOffset = 24;
+    const radius = 250;
+    const maxTilt = 6;
     let rafId: number | null = null;
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
+    let targetTilt = 0;
+    let targetWave = 0;
+    let currentTilt = 0;
+    let currentWave = 0;
     let isPointerActive = false;
 
     const computeTarget = (x: number, y: number) => {
@@ -35,35 +35,35 @@ export default function PullLightSwitch() {
       const distance = Math.hypot(dx, dy);
 
       if (distance >= radius) {
-        targetX = 0;
-        targetY = 0;
+        targetTilt = 0;
+        targetWave = 0;
         isPointerActive = false;
         return;
       }
 
       const proximity = (radius - distance) / radius;
-      targetX = (dx / radius) * maxOffset * proximity;
-      targetY = (dy / radius) * maxOffset * proximity;
+      targetTilt = (dx / radius) * maxTilt * proximity;
+      targetWave = Math.max(0, proximity * 1.1);
       isPointerActive = true;
     };
 
     const animateToTarget = () => {
-      const smoothFactor = 0.16;
-      currentX += (targetX - currentX) * smoothFactor;
-      currentY += (targetY - currentY) * smoothFactor;
+      const smoothFactor = 0.14;
+      currentTilt += (targetTilt - currentTilt) * smoothFactor;
+      currentWave += (targetWave - currentWave) * smoothFactor;
 
-      button.style.setProperty("--follow-x", `${currentX.toFixed(2)}px`);
-      button.style.setProperty("--follow-y", `${currentY.toFixed(2)}px`);
-      button.classList.toggle("is-following", isPointerActive || Math.hypot(currentX, currentY) > 0.4);
+      button.style.setProperty("--cursor-tilt", `${currentTilt.toFixed(3)}deg`);
+      button.style.setProperty("--cursor-wave", `${currentWave.toFixed(3)}`);
+      button.classList.toggle("is-following", isPointerActive || Math.abs(currentTilt) > 0.08 || currentWave > 0.08);
 
-      const remaining = Math.hypot(targetX - currentX, targetY - currentY);
-      if (remaining > 0.04 || Math.hypot(currentX, currentY) > 0.04) {
+      const remaining = Math.abs(targetTilt - currentTilt) + Math.abs(targetWave - currentWave);
+      if (remaining > 0.01 || Math.abs(currentTilt) > 0.01 || currentWave > 0.01) {
         rafId = window.requestAnimationFrame(animateToTarget);
       } else {
-        currentX = targetX;
-        currentY = targetY;
-        button.style.setProperty("--follow-x", `${currentX.toFixed(2)}px`);
-        button.style.setProperty("--follow-y", `${currentY.toFixed(2)}px`);
+        currentTilt = targetTilt;
+        currentWave = targetWave;
+        button.style.setProperty("--cursor-tilt", `${currentTilt.toFixed(3)}deg`);
+        button.style.setProperty("--cursor-wave", `${currentWave.toFixed(3)}`);
         rafId = null;
       }
     };
@@ -77,8 +77,8 @@ export default function PullLightSwitch() {
     };
 
     const clearOffset = () => {
-      targetX = 0;
-      targetY = 0;
+      targetTilt = 0;
+      targetWave = 0;
       isPointerActive = false;
 
       if (rafId === null) {
