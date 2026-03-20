@@ -476,6 +476,13 @@ body.theme-dark .nav-links-center {
   transform: scaleX(1);
 }
 
+.nav-links-right .studyroom-btn::after,
+.nav-links-right .studyroom-btn:hover::after,
+.nav-links-right .studyroom-btn.active-nav-link::after {
+  content: none;
+  display: none;
+}
+
 .studyroom-btn {
   position: relative;
   align-self: center;
