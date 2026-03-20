@@ -17,11 +17,10 @@ export default function PullLightSwitch() {
       return;
     }
 
-    const OVERLAP_PX = 18;
     let headerEl: HTMLElement | null = null;
     let resizeObserver: ResizeObserver | null = null;
 
-    const syncAnchorToNavbar = () => {
+    const syncNavbarCover = () => {
       headerEl = document.querySelector(".site-header") as HTMLElement | null;
 
       if (!headerEl) {
@@ -29,26 +28,26 @@ export default function PullLightSwitch() {
       }
 
       const headerBottom = headerEl.getBoundingClientRect().bottom;
-      const switchTop = Math.max(0, Math.round(headerBottom - OVERLAP_PX));
-      button.style.setProperty("--switch-top", `${switchTop}px`);
+      const navCover = Math.max(0, Math.round(headerBottom));
+      button.style.setProperty("--nav-cover", `${navCover}px`);
     };
 
-    syncAnchorToNavbar();
+    syncNavbarCover();
     headerEl = document.querySelector(".site-header") as HTMLElement | null;
     if (headerEl) {
-      resizeObserver = new ResizeObserver(syncAnchorToNavbar);
+      resizeObserver = new ResizeObserver(syncNavbarCover);
       resizeObserver.observe(headerEl);
     }
 
-    window.addEventListener("scroll", syncAnchorToNavbar, { passive: true });
-    window.addEventListener("resize", syncAnchorToNavbar);
-    window.addEventListener("orientationchange", syncAnchorToNavbar);
+    window.addEventListener("scroll", syncNavbarCover, { passive: true });
+    window.addEventListener("resize", syncNavbarCover);
+    window.addEventListener("orientationchange", syncNavbarCover);
 
     return () => {
       resizeObserver?.disconnect();
-      window.removeEventListener("scroll", syncAnchorToNavbar);
-      window.removeEventListener("resize", syncAnchorToNavbar);
-      window.removeEventListener("orientationchange", syncAnchorToNavbar);
+      window.removeEventListener("scroll", syncNavbarCover);
+      window.removeEventListener("resize", syncNavbarCover);
+      window.removeEventListener("orientationchange", syncNavbarCover);
     };
   }, []);
 
