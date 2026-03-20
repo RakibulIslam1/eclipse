@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import Lottie from "lottie-react";
-import introLoaderAnimation from "@/assets/intro-loader.json";
 
 function shouldRunIntroOnEntry(isHomePath: boolean) {
   if (!isHomePath) return false;
@@ -29,7 +27,6 @@ export default function LandingIntroGate() {
   const hasFinished = useRef(false);
   const [showIntro, setShowIntro] = useState(false);
   const [isFading, setIsFading] = useState(false);
-  const [isVideoReady, setIsVideoReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -67,10 +64,8 @@ export default function LandingIntroGate() {
     if (video) {
       const onEnded = () => finishIntro();
       const onError = () => finishIntro();
-      const onCanPlay = () => setIsVideoReady(true);
       video.addEventListener("ended", onEnded);
       video.addEventListener("error", onError);
-      video.addEventListener("canplay", onCanPlay);
       video.play().catch(() => finishIntro());
       finishTimer = window.setTimeout(() => {
         finishIntro();
@@ -78,7 +73,6 @@ export default function LandingIntroGate() {
       return () => {
         video.removeEventListener("ended", onEnded);
         video.removeEventListener("error", onError);
-        video.removeEventListener("canplay", onCanPlay);
         if (finishTimer !== null) window.clearTimeout(finishTimer);
       };
     }
@@ -87,15 +81,9 @@ export default function LandingIntroGate() {
   if (!showIntro) return null;
   return (
     <div className={`landing-intro${isFading ? " fade-out" : ""}`} aria-hidden="true">
-      {!isVideoReady && (
-        <div className="landing-intro-loader" aria-hidden="true">
-          <Lottie animationData={introLoaderAnimation} loop className="landing-intro-loader-anim" />
-          <p className="landing-intro-loader-text">Preparing your learning space...</p>
-        </div>
-      )}
       <video
         ref={videoRef}
-        className={`landing-intro-video${isVideoReady ? "" : " is-hidden"}`}
+        className="landing-intro-video"
         src="/intro/intro.mp4"
         muted
         playsInline

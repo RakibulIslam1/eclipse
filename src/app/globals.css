@@ -62,35 +62,6 @@ body.intro-active .pull-switch {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 1;
-  transition: opacity 220ms ease;
-}
-
-.landing-intro-video.is-hidden {
-  opacity: 0;
-}
-
-.landing-intro-loader {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 0.75rem;
-  background: #000;
-  z-index: 1;
-}
-
-.landing-intro-loader-anim {
-  width: clamp(84px, 14vw, 124px);
-  height: clamp(84px, 14vw, 124px);
-}
-
-.landing-intro-loader-text {
-  margin: 0;
-  color: #d2e8de;
-  font-size: clamp(0.88rem, 1.5vw, 1rem);
-  letter-spacing: 0.01em;
 }
 
 .pull-switch {
@@ -594,11 +565,6 @@ body.theme-dark .pill {
   .landing-intro-video {
     object-fit: contain;
     background: #000;
-  }
-
-  .landing-intro-loader {
-    padding: 0 1rem;
-    text-align: center;
   }
 
   .pull-switch {
