@@ -86,6 +86,9 @@ body.intro-active .pull-switch {
   display: block;
   padding: 0;
   cursor: pointer;
+  transform: translate(var(--follow-x, 0px), var(--follow-y, 0px));
+  transition: transform 160ms ease;
+  will-change: transform;
 }
 
 .pull-switch-body {
@@ -97,6 +100,10 @@ body.intro-active .pull-switch {
   width: 100%;
   transform-origin: top center;
   animation: pull-switch-sway 3.8s ease-in-out infinite;
+}
+
+.pull-switch.is-following .pull-switch-body {
+  animation-duration: 2.4s;
 }
 
 .pull-switch-cord {
@@ -139,7 +146,7 @@ body.intro-active .pull-switch {
 }
 
 .pull-switch.is-pulling .pull-switch-body {
-  animation: none;
+  animation-play-state: paused;
   transform: rotate(7deg) translateY(2px);
 }
 
