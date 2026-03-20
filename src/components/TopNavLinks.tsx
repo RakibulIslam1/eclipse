@@ -41,7 +41,7 @@ export default function TopNavLinks() {
           <Link
             key={item.href}
             href={item.href}
-            className={`studyroom-btn${isActive(item.href) ? " active-nav-link" : ""}`}
+            className="studyroom-btn"
             aria-current={isActive(item.href) ? "page" : undefined}
           >
             {item.label}
