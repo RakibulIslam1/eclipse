@@ -33,13 +33,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Navbar animation effect
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  // Navbar animation effect (client only)
   if (typeof window !== "undefined") {
-    setTimeout(() => {
+    // do nothing here, handled in useEffect below
+  }
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  require('react'); // ensure React is in scope for hooks
+  const React = require('react');
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
       document.body.classList.add("navbar-animate");
     }, 60);
-  }
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
