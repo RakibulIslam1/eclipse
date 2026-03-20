@@ -64,6 +64,9 @@ a {
   transition: opacity 620ms ease, transform 620ms ease;
 }
 
+html:not(.app-shell-ready) body .site-wrap,
+html:not(.app-shell-ready) body .pull-switch,
+html:not(.app-shell-ready) body .site-header,
 html.intro-pending body .site-wrap,
 html.intro-pending body .pull-switch {
   opacity: 0;
@@ -181,7 +184,9 @@ body.intro-active .pull-switch {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: url("/bg/download-4.jfif") center / cover no-repeat;
+  background:
+    linear-gradient(180deg, rgba(var(--bg-dark), 0.6), rgba(var(--bg-dark), 0.48)),
+    url("/bg/download-4.jfif") center / cover no-repeat;
   transform: none;
   transition: filter 560ms ease;
 }
@@ -205,6 +210,7 @@ body.theme-dark .bg-photo-layer {
   transform: translateY(0);
 }
 
+html:not(.app-shell-ready) body .site-header,
 html.intro-pending body .site-header {
   opacity: 0;
   transform: translateY(-48px);
@@ -258,13 +264,18 @@ body.theme-dark .site-header::after {
   display: inline-flex;
   align-items: center;
   line-height: 0;
+  padding: 0.25rem 0.45rem;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(246, 250, 250, 0.98), rgba(228, 239, 240, 0.94));
+  border: 1px solid rgba(var(--border), 0.28);
+  box-shadow: 0 10px 24px rgba(var(--bg-dark), 0.14);
 }
 
 .brand-logo {
   height: 48px;
   width: auto;
   display: block;
-  padding: 3px 12px;
+  padding: 2px 10px;
 }
 
 .nav-links {
@@ -461,7 +472,7 @@ body.theme-dark .site-header::after {
 }
 
 .trans-strip {
-  background: linear-gradient(180deg, rgba(var(--bg-light), 0.84), rgba(var(--bg), 0.82));
+  background: linear-gradient(180deg, rgba(var(--bg-light), 0.92), rgba(var(--bg), 0.9));
   border: 1px solid rgba(var(--border), 0.44);
   border-radius: 22px;
   padding: 1.2rem 1.1rem;
@@ -565,6 +576,10 @@ body.theme-dark .site-header::after {
 
   .brand-logo {
     height: 38px;
+  }
+
+  .brand {
+    padding: 0.18rem 0.32rem;
   }
 
   .studyroom-btn {

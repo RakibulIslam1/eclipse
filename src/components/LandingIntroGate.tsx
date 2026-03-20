@@ -36,6 +36,7 @@ export default function LandingIntroGate() {
     const shouldShowIntro = shouldRunIntroOnEntry(isHomePath);
     if (!shouldShowIntro) {
       document.documentElement.classList.remove("intro-pending");
+      document.documentElement.classList.add("app-shell-ready");
       document.body.classList.remove("intro-active", "intro-will-run");
       document.body.classList.add("intro-done", "navbar-animate");
       return;
@@ -58,6 +59,7 @@ export default function LandingIntroGate() {
       setIsFading(true);
       window.setTimeout(() => {
         document.documentElement.classList.remove("intro-pending");
+        document.documentElement.classList.add("app-shell-ready");
         document.body.classList.remove("intro-active", "intro-will-run");
         document.body.classList.add("intro-done", "navbar-animate");
         setShowIntro(false);
