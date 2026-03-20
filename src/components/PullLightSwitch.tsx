@@ -17,6 +17,34 @@ export default function PullLightSwitch() {
       return;
     }
 
+    const syncAnchorToNavbar = () => {
+      const header = document.querySelector(".site-header") as HTMLElement | null;
+
+      if (!header) {
+        return;
+      }
+
+      const headerBottom = header.getBoundingClientRect().bottom;
+      button.style.setProperty("--switch-top", `${Math.round(headerBottom + 6)}px`);
+    };
+
+    syncAnchorToNavbar();
+    window.addEventListener("resize", syncAnchorToNavbar);
+    window.addEventListener("orientationchange", syncAnchorToNavbar);
+
+    return () => {
+      window.removeEventListener("resize", syncAnchorToNavbar);
+      window.removeEventListener("orientationchange", syncAnchorToNavbar);
+    };
+  }, []);
+
+  useEffect(() => {
+    const button = buttonRef.current;
+
+    if (!button) {
+      return;
+    }
+
     const radius = 250;
     const maxTilt = 6;
     let rafId: number | null = null;
