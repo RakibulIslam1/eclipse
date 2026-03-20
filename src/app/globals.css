@@ -68,6 +68,19 @@ body.intro-active .pull-switch {
   pointer-events: none;
 }
 
+body.intro-will-run .pull-switch {
+  opacity: 0;
+  transform: translateY(22px);
+  pointer-events: none;
+}
+
+body.intro-done .pull-switch {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity 220ms ease 620ms, transform 220ms ease 620ms;
+}
+
 .landing-intro {
   position: fixed;
   inset: 0;
