@@ -47,9 +47,11 @@ export default function PullLightSwitch() {
       onClick={toggleTheme}
       title={isDark ? "Pull to switch light mode" : "Pull to switch dark mode"}
     >
-      <span className="pull-switch-cord" aria-hidden="true" />
-      <span className="pull-switch-handle" aria-hidden="true" />
-      <span className="pull-switch-glow" aria-hidden="true" />
+      <span className="pull-switch-body" aria-hidden="true">
+        <span className="pull-switch-cord" />
+        <span className="pull-switch-handle" />
+        <span className="pull-switch-glow" />
+      </span>
     </button>
   );
 }

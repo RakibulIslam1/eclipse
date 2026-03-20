@@ -80,14 +80,23 @@ body.intro-active .pull-switch {
   top: 4.5rem;
   z-index: 40;
   width: 2.7rem;
+  height: 7.1rem;
   border: none;
   background: transparent;
+  display: block;
+  padding: 0;
+  cursor: pointer;
+}
+
+.pull-switch-body {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 0;
-  cursor: pointer;
+  width: 100%;
+  transform-origin: top center;
+  animation: pull-switch-sway 3.8s ease-in-out infinite;
 }
 
 .pull-switch-cord {
@@ -111,7 +120,7 @@ body.intro-active .pull-switch {
 
 .pull-switch-glow {
   position: absolute;
-  top: 78px;
+  top: 71px;
   left: 50%;
   width: 3.2rem;
   height: 3.2rem;
@@ -123,6 +132,15 @@ body.intro-active .pull-switch {
   animation: pull-switch-light-breathe 2.2s ease-in-out infinite;
   pointer-events: none;
   transition: opacity 360ms ease, filter 360ms ease;
+}
+
+.pull-switch:hover .pull-switch-body {
+  animation-duration: 2.8s;
+}
+
+.pull-switch.is-pulling .pull-switch-body {
+  animation: none;
+  transform: rotate(7deg) translateY(2px);
 }
 
 .pull-switch.is-pulling .pull-switch-cord {
@@ -148,6 +166,25 @@ body.intro-active .pull-switch {
   50% {
     transform: translateX(-50%) scale(1.17);
     opacity: 1;
+  }
+}
+
+@keyframes pull-switch-sway {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+
+  25% {
+    transform: rotate(1.5deg);
+  }
+
+  50% {
+    transform: rotate(4deg);
+  }
+
+  75% {
+    transform: rotate(-1.5deg);
   }
 }
 
