@@ -1,47 +1,44 @@
 import { adminProfile } from "@/lib/admin-profile";
-import ThemePalette from "@/components/ThemePalette";
 
 export default function Home() {
   return (
     <div className="home-flow">
       <section>
-        <h1 className="hero-title">Eclipse Academy</h1>
+        <h1 className="hero-title">Eclipse Learners</h1>
         <p className="hero-copy">
-          A dynamic learning space with a simple 3-color identity. The navbar logo
-          always returns to this homepage while the sections flow instead of rigid
-          card boxes.
+          A teal-led learning platform for students and mentors with guided study
+          rooms, in-house meetings, AI assistance, workflow automation, and a
+          collaborative editor experience.
         </p>
         <div className="pill-row">
           <span className="pill">Admin: {adminProfile.email}</span>
           <span className="pill">Role: {adminProfile.role}</span>
-          <span className="pill">Theme: 3 editable colors</span>
+          <span className="pill">Backend: Supabase-ready</span>
         </div>
       </section>
 
-      <ThemePalette />
-
       <section className="trans-strip">
-        <h2>Demo Sections</h2>
+        <h2>Platform Flow</h2>
         <div className="flow-grid">
           <article>
-            <h3>Live Learning Pulse</h3>
+            <h3>Mentor Matching</h3>
             <p>
-              Watch trending lesson topics, active learners, and mentor hours in a
-              constantly moving stream.
+              Match learners with mentors, track availability, and manage session
+              readiness from a shared realtime backend.
             </p>
           </article>
           <article>
-            <h3>Skill Roadmaps</h3>
+            <h3>Automation Workspace</h3>
             <p>
-              Pick a skill path and immediately see milestones, weekly targets, and
-              peer groups matched to your level.
+              Connect onboarding, reminders, progress checkpoints, and admin flows
+              with a single data layer that is ready for product automation.
             </p>
           </article>
           <article>
-            <h3>Community Spotlight</h3>
+            <h3>Creator Tools</h3>
             <p>
-              Dynamic highlights from mentors and top students appear here to keep
-              motivation visible every day.
+              Support live collaboration, in-house calls, AI support, and visual
+              template editing with a product structure built to scale.
             </p>
           </article>
         </div>
