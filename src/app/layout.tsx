@@ -33,13 +33,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Navbar animation handled by NavbarAnimator client component
   return (
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
         <LandingIntroGate />
-        {/* Navbar animation trigger (client only) */}
-        {typeof window !== 'undefined' && require('@/components/NavbarAnimator').default()}
         <div className="bg-photo-layer" aria-hidden="true" />
         <PullLightSwitch />
         <div className="site-wrap">
