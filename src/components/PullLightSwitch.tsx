@@ -20,8 +20,7 @@ export default function PullLightSwitch() {
     let headerEl: HTMLElement | null = null;
     let resizeObserver: ResizeObserver | null = null;
     let rafId: number | null = null;
-    let settleTimerA: number | null = null;
-    let settleTimerB: number | null = null;
+    let mutationObserver: MutationObserver | null = null;
 
     const syncNavbarCover = () => {
       headerEl = document.querySelector(".site-header") as HTMLElement | null;
@@ -30,22 +29,24 @@ export default function PullLightSwitch() {
         return;
       }
 
-      const navCover = Math.max(56, Math.round(headerEl.offsetHeight + 6));
+      const headerBottom = headerEl.getBoundingClientRect().bottom;
+      const navCover = Math.max(0, Math.round(headerBottom));
       button.style.setProperty("--nav-cover", `${navCover}px`);
     };
 
     syncNavbarCover();
     rafId = window.requestAnimationFrame(syncNavbarCover);
-    settleTimerA = window.setTimeout(syncNavbarCover, 320);
-    settleTimerB = window.setTimeout(syncNavbarCover, 950);
     headerEl = document.querySelector(".site-header") as HTMLElement | null;
     if (headerEl) {
       resizeObserver = new ResizeObserver(syncNavbarCover);
       resizeObserver.observe(headerEl);
     }
 
+    mutationObserver = new MutationObserver(syncNavbarCover);
+    mutationObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    mutationObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
     window.addEventListener("load", syncNavbarCover);
-    window.addEventListener("scroll", syncNavbarCover, { passive: true });
     window.addEventListener("resize", syncNavbarCover);
     window.addEventListener("orientationchange", syncNavbarCover);
 
@@ -53,15 +54,9 @@ export default function PullLightSwitch() {
       if (rafId !== null) {
         window.cancelAnimationFrame(rafId);
       }
-      if (settleTimerA !== null) {
-        window.clearTimeout(settleTimerA);
-      }
-      if (settleTimerB !== null) {
-        window.clearTimeout(settleTimerB);
-      }
+      mutationObserver?.disconnect();
       resizeObserver?.disconnect();
       window.removeEventListener("load", syncNavbarCover);
-      window.removeEventListener("scroll", syncNavbarCover);
       window.removeEventListener("resize", syncNavbarCover);
       window.removeEventListener("orientationchange", syncNavbarCover);
     };

@@ -1,7 +1,8 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import DesktopViewportScaler from "@/components/DesktopViewportScaler";
 import LandingIntroGate from "@/components/LandingIntroGate";
 import PullLightSwitch from "@/components/PullLightSwitch";
 import TopNavLinks from "@/components/TopNavLinks";
@@ -27,11 +28,6 @@ export const metadata: Metadata = {
     shortcut: "/brand/favicon.png?v=20260319-1",
     apple: "/brand/favicon.png?v=20260319-1",
   },
-};
-
-export const viewport: Viewport = {
-  width: 1280,
-  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -81,26 +77,31 @@ export default function RootLayout({
         />
       </head>
       <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
+        <DesktopViewportScaler />
         <LandingIntroGate />
-        <div className="bg-photo-layer" aria-hidden="true" />
-        <PullLightSwitch />
-        <div className="site-wrap">
-          <header className="site-header">
-            <nav className="top-nav">
-              <Link href="/" className="brand" aria-label="Eclipse Learners home">
-                <Image
-                  src="/brand/navbar_logo.png"
-                  alt="Eclipse"
-                  width={360}
-                  height={90}
-                  className="brand-logo"
-                  priority
-                />
-              </Link>
-              <TopNavLinks />
-            </nav>
-          </header>
-          <main className="site-main">{children}</main>
+        <div className="desktop-stage">
+          <div className="desktop-shell">
+            <div className="bg-photo-layer" aria-hidden="true" />
+            <PullLightSwitch />
+            <div className="site-wrap">
+              <header className="site-header">
+                <nav className="top-nav">
+                  <Link href="/" className="brand" aria-label="Eclipse Learners home">
+                    <Image
+                      src="/brand/navbar_logo.png"
+                      alt="Eclipse"
+                      width={360}
+                      height={90}
+                      className="brand-logo"
+                      priority
+                    />
+                  </Link>
+                  <TopNavLinks />
+                </nav>
+              </header>
+              <main className="site-main">{children}</main>
+            </div>
+          </div>
         </div>
       </body>
     </html>

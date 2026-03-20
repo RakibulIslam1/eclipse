@@ -6,6 +6,9 @@
   --color-1: #104f8d;
   --color-2: #f4b942;
   --color-3: #19a974;
+  --desktop-scale: 1;
+  --desktop-shell-width: 1280px;
+  --desktop-shell-height: 100vh;
 }
 
 body.theme-dark {
@@ -19,7 +22,19 @@ body {
   font-family: var(--font-body), "Segoe UI", sans-serif;
   background: #dfe8ef;
   min-height: 100vh;
+  overflow-x: hidden;
   transition: background-color 520ms ease, color 420ms ease;
+}
+
+.desktop-stage {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.desktop-shell {
+  min-height: 100vh;
+  position: relative;
 }
 
 a {
@@ -86,7 +101,7 @@ body.intro-active .pull-switch {
   top: 0;
   z-index: 18;
   width: 2.7rem;
-  height: 9rem;
+  height: 7.1rem;
   border: none;
   background: transparent;
   display: block;
@@ -116,7 +131,7 @@ body.intro-active .pull-switch {
 .pull-switch-cord {
   position: relative;
   width: 2px;
-  height: 116px;
+  height: 88px;
   background: transparent;
   overflow: visible;
   transform-origin: top center;
@@ -146,7 +161,7 @@ body.intro-active .pull-switch {
 
 .pull-switch-glow {
   position: absolute;
-  top: 100px;
+  top: 71px;
   left: 50%;
   width: 3.2rem;
   height: 3.2rem;
@@ -680,5 +695,51 @@ body.theme-dark .pill {
 
   .flow-grid > article:nth-child(2n) {
     transform: none;
+  }
+}
+
+@media (max-width: 1279px) {
+  .desktop-stage {
+    min-height: var(--desktop-shell-height);
+  }
+
+  .desktop-shell {
+    width: var(--desktop-shell-width);
+    min-height: var(--desktop-shell-height);
+    transform: scale(var(--desktop-scale));
+    transform-origin: top left;
+  }
+
+  .top-nav {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .nav-links-center {
+    width: auto;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .nav-links-right {
+    width: auto;
+    justify-content: flex-end;
+    min-width: 140px;
+  }
+
+  .site-main {
+    padding-top: 2.5rem;
+  }
+
+  .brand-logo {
+    height: 48px;
+  }
+
+  .studyroom-btn {
+    padding: 0.5rem 1rem 0.5rem 0.9rem;
+  }
+
+  .flow-grid > article:nth-child(2n) {
+    transform: translateX(6px);
   }
 }
