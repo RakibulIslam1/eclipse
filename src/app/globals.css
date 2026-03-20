@@ -476,11 +476,6 @@ body.theme-dark .nav-links-center {
   transform: scaleX(1);
 }
 
-.studyroom-btn.active-nav-link::after {
-  transform: scaleX(0);
-  display: none;
-}
-
 .studyroom-btn {
   position: relative;
   align-self: center;
