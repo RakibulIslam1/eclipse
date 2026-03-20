@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,6 +27,11 @@ export const metadata: Metadata = {
     shortcut: "/brand/favicon.png?v=20260319-1",
     apple: "/brand/favicon.png?v=20260319-1",
   },
+};
+
+export const viewport: Viewport = {
+  width: 1280,
+  initialScale: 1,
 };
 
 export default function RootLayout({

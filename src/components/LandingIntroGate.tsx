@@ -27,6 +27,7 @@ export default function LandingIntroGate() {
   const hasFinished = useRef(false);
   const [showIntro, setShowIntro] = useState(false);
   const [isFading, setIsFading] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -44,6 +45,7 @@ export default function LandingIntroGate() {
     document.documentElement.classList.remove("intro-pending");
     document.body.classList.add("intro-active", "intro-will-run");
     document.body.classList.remove("navbar-animate");
+    setIsVideoReady(false);
     setShowIntro(true);
   }, [pathname]);
 
@@ -69,8 +71,10 @@ export default function LandingIntroGate() {
     if (video) {
       const onEnded = () => finishIntro();
       const onError = () => finishIntro();
+      const onReady = () => setIsVideoReady(true);
       video.addEventListener("ended", onEnded);
       video.addEventListener("error", onError);
+      video.addEventListener("loadeddata", onReady);
       video.play().catch(() => finishIntro());
       finishTimer = window.setTimeout(() => {
         finishIntro();
@@ -78,6 +82,7 @@ export default function LandingIntroGate() {
       return () => {
         video.removeEventListener("ended", onEnded);
         video.removeEventListener("error", onError);
+        video.removeEventListener("loadeddata", onReady);
         if (finishTimer !== null) window.clearTimeout(finishTimer);
       };
     }
@@ -88,10 +93,11 @@ export default function LandingIntroGate() {
     <div className={`landing-intro${isFading ? " fade-out" : ""}`} aria-hidden="true">
       <video
         ref={videoRef}
-        className="landing-intro-video"
+        className={`landing-intro-video${isVideoReady ? " is-ready" : ""}`}
         src="/intro/intro.mp4"
         muted
         playsInline
+        disablePictureInPicture
         autoPlay
         preload="auto"
         poster="/intro/landing_vdo_poster.jpg"

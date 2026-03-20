@@ -72,6 +72,12 @@ body.intro-active .pull-switch {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.landing-intro-video.is-ready {
+  opacity: 1;
 }
 
 .pull-switch {
@@ -80,7 +86,7 @@ body.intro-active .pull-switch {
   top: 0;
   z-index: 18;
   width: 2.7rem;
-  height: 7.1rem;
+  height: 9rem;
   border: none;
   background: transparent;
   display: block;
@@ -110,7 +116,7 @@ body.intro-active .pull-switch {
 .pull-switch-cord {
   position: relative;
   width: 2px;
-  height: 88px;
+  height: 116px;
   background: transparent;
   overflow: visible;
   transform-origin: top center;
@@ -140,7 +146,7 @@ body.intro-active .pull-switch {
 
 .pull-switch-glow {
   position: absolute;
-  top: 71px;
+  top: 100px;
   left: 50%;
   width: 3.2rem;
   height: 3.2rem;
@@ -640,11 +646,6 @@ body.theme-dark .pill {
 }
 
 @media (max-width: 720px) {
-  .landing-intro-video {
-    object-fit: contain;
-    background: #000;
-  }
-
   .site-header {
     transform: translateY(0);
   }
