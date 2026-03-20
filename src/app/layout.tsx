@@ -33,23 +33,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Navbar animation effect (client only)
-  if (typeof window !== "undefined") {
-    // do nothing here, handled in useEffect below
-  }
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  require('react'); // ensure React is in scope for hooks
-  const React = require('react');
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      document.body.classList.add("navbar-animate");
-    }, 60);
-    return () => clearTimeout(timer);
-  }, []);
+  // Navbar animation handled by NavbarAnimator client component
   return (
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
         <LandingIntroGate />
+        {/* Navbar animation trigger (client only) */}
+        {typeof window !== 'undefined' && require('@/components/NavbarAnimator').default()}
         <div className="bg-photo-layer" aria-hidden="true" />
         <PullLightSwitch />
         <div className="site-wrap">
