@@ -17,13 +17,16 @@ export default function PullLightSwitch() {
       return;
     }
 
-    const radius = 220;
-    const maxOffset = 16;
+    const radius = 320;
+    const maxOffset = 24;
     let rafId: number | null = null;
-    let latestX = 0;
-    let latestY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isPointerActive = false;
 
-    const applyOffset = (x: number, y: number) => {
+    const computeTarget = (x: number, y: number) => {
       const rect = button.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + Math.min(rect.height * 0.68, 95);
@@ -32,39 +35,55 @@ export default function PullLightSwitch() {
       const distance = Math.hypot(dx, dy);
 
       if (distance >= radius) {
-        button.style.setProperty("--follow-x", "0px");
-        button.style.setProperty("--follow-y", "0px");
-        button.classList.remove("is-following");
+        targetX = 0;
+        targetY = 0;
+        isPointerActive = false;
         return;
       }
 
       const proximity = (radius - distance) / radius;
-      const tx = (dx / radius) * maxOffset * proximity;
-      const ty = (dy / radius) * maxOffset * proximity;
-
-      button.style.setProperty("--follow-x", `${tx.toFixed(2)}px`);
-      button.style.setProperty("--follow-y", `${ty.toFixed(2)}px`);
-      button.classList.add("is-following");
+      targetX = (dx / radius) * maxOffset * proximity;
+      targetY = (dy / radius) * maxOffset * proximity;
+      isPointerActive = true;
     };
 
-    const flush = () => {
-      rafId = null;
-      applyOffset(latestX, latestY);
+    const animateToTarget = () => {
+      const smoothFactor = 0.16;
+      currentX += (targetX - currentX) * smoothFactor;
+      currentY += (targetY - currentY) * smoothFactor;
+
+      button.style.setProperty("--follow-x", `${currentX.toFixed(2)}px`);
+      button.style.setProperty("--follow-y", `${currentY.toFixed(2)}px`);
+      button.classList.toggle("is-following", isPointerActive || Math.hypot(currentX, currentY) > 0.4);
+
+      const remaining = Math.hypot(targetX - currentX, targetY - currentY);
+      if (remaining > 0.04 || Math.hypot(currentX, currentY) > 0.04) {
+        rafId = window.requestAnimationFrame(animateToTarget);
+      } else {
+        currentX = targetX;
+        currentY = targetY;
+        button.style.setProperty("--follow-x", `${currentX.toFixed(2)}px`);
+        button.style.setProperty("--follow-y", `${currentY.toFixed(2)}px`);
+        rafId = null;
+      }
     };
 
     const onPointerMove = (event: PointerEvent) => {
-      latestX = event.clientX;
-      latestY = event.clientY;
+      computeTarget(event.clientX, event.clientY);
 
       if (rafId === null) {
-        rafId = window.requestAnimationFrame(flush);
+        rafId = window.requestAnimationFrame(animateToTarget);
       }
     };
 
     const clearOffset = () => {
-      button.style.setProperty("--follow-x", "0px");
-      button.style.setProperty("--follow-y", "0px");
-      button.classList.remove("is-following");
+      targetX = 0;
+      targetY = 0;
+      isPointerActive = false;
+
+      if (rafId === null) {
+        rafId = window.requestAnimationFrame(animateToTarget);
+      }
     };
 
     window.addEventListener("pointermove", onPointerMove, { passive: true });
