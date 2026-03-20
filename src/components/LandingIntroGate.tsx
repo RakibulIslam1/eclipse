@@ -63,7 +63,7 @@ export default function LandingIntroGate() {
       <video
         ref={videoRef}
         className="landing-intro-video"
-        src="/intro/landing_vdo.mp4"
+        src="/intro/intro.mp4"
         muted
         playsInline
         autoPlay
