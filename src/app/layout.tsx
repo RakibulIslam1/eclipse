@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import LandingIntroGate from "@/components/LandingIntroGate";
 import PullLightSwitch from "@/components/PullLightSwitch";
 import "./globals.css";
@@ -35,6 +36,39 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script id="intro-preload-state" strategy="beforeInteractive">
+          {`
+            (function () {
+              try {
+                var isHome = window.location.pathname === "/";
+                if (!isHome) return;
+                var nav = performance.getEntriesByType("navigation")[0];
+                var navType = nav && nav.type;
+                var shouldRun = false;
+                if (navType === "reload") {
+                  shouldRun = true;
+                } else if (navType === "navigate") {
+                  if (!document.referrer) {
+                    shouldRun = true;
+                  } else {
+                    try {
+                      shouldRun = new URL(document.referrer).origin !== window.location.origin;
+                    } catch (error) {
+                      shouldRun = true;
+                    }
+                  }
+                }
+                if (shouldRun) {
+                  document.documentElement.classList.add("intro-pending");
+                }
+              } catch (error) {
+                document.documentElement.classList.remove("intro-pending");
+              }
+            })();
+          `}
+        </Script>
+      </head>
       <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
         <LandingIntroGate />
         <div className="bg-photo-layer" aria-hidden="true" />

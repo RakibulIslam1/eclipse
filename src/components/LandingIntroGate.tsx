@@ -35,10 +35,12 @@ export default function LandingIntroGate() {
     const isHomePath = pathname === "/";
     const shouldShowIntro = shouldRunIntroOnEntry(isHomePath);
     if (!shouldShowIntro) {
+      document.documentElement.classList.remove("intro-pending");
       document.body.classList.remove("intro-active", "intro-will-run");
       document.body.classList.add("intro-done", "navbar-animate");
       return;
     }
+    document.documentElement.classList.remove("intro-pending");
     document.body.classList.add("intro-active", "intro-will-run");
     document.body.classList.remove("navbar-animate");
     setShowIntro(true);
@@ -55,6 +57,7 @@ export default function LandingIntroGate() {
       if (finishTimer !== null) window.clearTimeout(finishTimer);
       setIsFading(true);
       window.setTimeout(() => {
+        document.documentElement.classList.remove("intro-pending");
         document.body.classList.remove("intro-active", "intro-will-run");
         document.body.classList.add("intro-done", "navbar-animate");
         setShowIntro(false);
