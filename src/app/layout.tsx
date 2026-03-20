@@ -19,7 +19,7 @@ const bodyFont = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Eclipse Academy",
+  title: "Eclipse Learners",
   description: "Learning website with courses, mentors, team, and study room.",
   icons: {
     icon: "/brand/favicon.png?v=20260319-1",
@@ -33,6 +33,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Navbar animation effect
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  if (typeof window !== "undefined") {
+    setTimeout(() => {
+      document.body.classList.add("navbar-animate");
+    }, 60);
+  }
   return (
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
@@ -42,7 +49,7 @@ export default function RootLayout({
         <div className="site-wrap">
           <header className="site-header">
             <nav className="top-nav">
-              <Link href="/" className="brand" aria-label="Eclipse Academy home">
+              <Link href="/" className="brand" aria-label="Eclipse Learners home">
                 <Image
                   src="/brand/navbar_logo.png"
                   alt="Eclipse"
