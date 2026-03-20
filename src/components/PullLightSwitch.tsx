@@ -29,6 +29,19 @@ export default function PullLightSwitch() {
         return;
       }
 
+      const body = document.body;
+      const root = document.documentElement;
+      const introIsHidingHeader =
+        root.classList.contains("intro-pending") ||
+        body.classList.contains("intro-active") ||
+        body.classList.contains("intro-will-run");
+
+      if (introIsHidingHeader) {
+        const stableCover = Math.max(72, Math.round(headerEl.offsetHeight));
+        button.style.setProperty("--nav-cover", `${stableCover}px`);
+        return;
+      }
+
       const headerBottom = headerEl.getBoundingClientRect().bottom;
       const navCover = Math.max(0, Math.round(headerBottom));
       button.style.setProperty("--nav-cover", `${navCover}px`);

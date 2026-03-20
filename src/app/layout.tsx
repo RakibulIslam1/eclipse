@@ -79,10 +79,10 @@ export default function RootLayout({
       <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
         <DesktopViewportScaler />
         <LandingIntroGate />
+        <PullLightSwitch />
         <div className="desktop-stage">
           <div className="desktop-shell">
             <div className="bg-photo-layer" aria-hidden="true" />
-            <PullLightSwitch />
             <div className="site-wrap">
               <header className="site-header">
                 <nav className="top-nav">

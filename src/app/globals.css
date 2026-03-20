@@ -101,7 +101,7 @@ body.intro-active .pull-switch {
   top: 0;
   z-index: 18;
   width: 2.7rem;
-  height: 7.1rem;
+  height: 7.95rem;
   border: none;
   background: transparent;
   display: block;
@@ -131,7 +131,7 @@ body.intro-active .pull-switch {
 .pull-switch-cord {
   position: relative;
   width: 2px;
-  height: 88px;
+  height: 102px;
   background: transparent;
   overflow: visible;
   transform-origin: top center;
@@ -161,7 +161,7 @@ body.intro-active .pull-switch {
 
 .pull-switch-glow {
   position: absolute;
-  top: 71px;
+  top: 85px;
   left: 50%;
   width: 3.2rem;
   height: 3.2rem;
