@@ -5,7 +5,9 @@ import Link from "next/link";
 import darkModeLogo from "../../contents/images/eclipse_logo_drk-mode-01.png";
 import DesktopViewportScaler from "@/components/DesktopViewportScaler";
 import LandingIntroGate from "@/components/LandingIntroGate";
+import FloatingSocialLauncher from "@/components/FloatingSocialLauncher";
 import PullLightSwitch from "@/components/PullLightSwitch";
+import RouteAwareFooter from "@/components/RouteAwareFooter";
 import TopNavLinks from "@/components/TopNavLinks";
 import "./globals.css";
 
@@ -81,6 +83,7 @@ export default function RootLayout({
         <DesktopViewportScaler />
         <LandingIntroGate />
         <PullLightSwitch />
+        <FloatingSocialLauncher />
         <div className="desktop-stage">
           <div className="desktop-shell">
             <div className="bg-photo-layer" aria-hidden="true" />
@@ -109,6 +112,7 @@ export default function RootLayout({
                 </nav>
               </header>
               <main className="site-main">{children}</main>
+              <RouteAwareFooter />
             </div>
           </div>
         </div>
