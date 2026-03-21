@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import darkModeLogo from "../../contents/images/eclipse_logo_drk-mode-01.png";
 import DesktopViewportScaler from "@/components/DesktopViewportScaler";
 import LandingIntroGate from "@/components/LandingIntroGate";
 import PullLightSwitch from "@/components/PullLightSwitch";
@@ -92,7 +93,15 @@ export default function RootLayout({
                       alt="Eclipse"
                       width={360}
                       height={90}
-                      className="brand-logo"
+                      className="brand-logo brand-logo-light"
+                      priority
+                    />
+                    <Image
+                      src={darkModeLogo}
+                      alt="Eclipse"
+                      width={360}
+                      height={90}
+                      className="brand-logo brand-logo-dark"
                       priority
                     />
                   </Link>

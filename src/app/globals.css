@@ -361,6 +361,18 @@ body.theme-dark .site-header::after {
   padding: 3px 12px;
 }
 
+.brand-logo-dark {
+  display: none;
+}
+
+body.theme-dark .brand-logo-light {
+  display: none;
+}
+
+body.theme-dark .brand-logo-dark {
+  display: block;
+}
+
 .nav-links {
   display: flex;
   gap: 1rem;
