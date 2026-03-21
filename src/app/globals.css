@@ -418,7 +418,7 @@ body.theme-dark .nav-links-center {
   padding: 0;
   cursor: pointer;
   box-shadow: 0 6px 14px rgba(7, 51, 58, 0.22);
-  transition: background-color 180ms ease, box-shadow 180ms ease;
+  transition: background 220ms ease, box-shadow 220ms ease, transform 180ms ease, filter 220ms ease;
 }
 
 .profile-icon-btn::after {
@@ -436,16 +436,43 @@ body.theme-dark .nav-links-center {
   width: 0.95rem;
   height: 0.95rem;
   fill: currentColor;
+  transition: transform 180ms ease;
 }
 
 .profile-icon-btn:hover {
   background: linear-gradient(140deg, #116874, #0b5560);
   box-shadow: 0 8px 16px rgba(7, 51, 58, 0.26);
+  transform: translateY(-1px) scale(1.02);
 }
 
 .profile-icon-btn:hover::after {
   opacity: 1;
   transform: scale(1.02);
+  animation: profile-ring-pulse 720ms ease-out;
+}
+
+.profile-icon-btn:hover svg {
+  transform: scale(1.08);
+}
+
+.profile-icon-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+body.theme-dark .profile-icon-btn {
+  border: 1px solid rgba(255, 205, 154, 0.62);
+  background: linear-gradient(140deg, #f3bf7b, #e08c62);
+  color: #2f1f1a;
+  box-shadow: 0 7px 18px rgba(6, 8, 11, 0.38);
+}
+
+body.theme-dark .profile-icon-btn::after {
+  border-color: rgba(255, 220, 181, 0.82);
+}
+
+body.theme-dark .profile-icon-btn:hover {
+  background: linear-gradient(140deg, #f7c98c, #ea9f70);
+  box-shadow: 0 9px 20px rgba(7, 10, 14, 0.44);
 }
 
 .nav-links a {
@@ -559,6 +586,23 @@ body.theme-dark .nav-links-center {
 
 .studyroom-btn:active {
   transform: translateY(0) scale(0.99);
+}
+
+@keyframes profile-ring-pulse {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.9);
+  }
+
+  70% {
+    opacity: 0.7;
+    transform: scale(1.12);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.16);
+  }
 }
 
 @keyframes studyroom-border-roam {
