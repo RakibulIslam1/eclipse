@@ -31,29 +31,56 @@ function getCanShowOnRoute(pathname: string, isMobile: boolean, y: number, maxSc
 export default function FloatingSocialLauncher() {
   const pathname = usePathname();
   const launcherRef = useRef<HTMLDivElement | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
+  const rafRef = useRef<number | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [canHoverExpand, setCanHoverExpand] = useState(false);
   const [isIntroBlocking, setIsIntroBlocking] = useState(true);
   const [isVisibleByScroll, setIsVisibleByScroll] = useState(false);
 
   useEffect(() => {
-    const evaluateViewportAndScroll = () => {
+    const evaluateViewport = () => {
+      const mobile = window.innerWidth <= MOBILE_BREAKPOINT;
+      const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+      setIsMobile((prev) => (prev !== mobile ? mobile : prev));
+      setCanHoverExpand((prev) => (prev !== canHover ? canHover : prev));
+    };
+
+    const evaluateVisibility = () => {
       const mobile = window.innerWidth <= MOBILE_BREAKPOINT;
       const maxScroll =
         document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const canShow = getCanShowOnRoute(pathname, mobile, window.scrollY, maxScroll);
 
-      setIsMobile(mobile);
-      setIsVisibleByScroll(canShow);
+      setIsVisibleByScroll((prev) => (prev !== canShow ? canShow : prev));
     };
 
-    evaluateViewportAndScroll();
-    window.addEventListener("resize", evaluateViewportAndScroll);
-    window.addEventListener("scroll", evaluateViewportAndScroll, { passive: true });
+    const onScroll = () => {
+      if (rafRef.current !== null) {
+        return;
+      }
+
+      rafRef.current = window.requestAnimationFrame(() => {
+        rafRef.current = null;
+        evaluateVisibility();
+      });
+    };
+
+    evaluateViewport();
+    evaluateVisibility();
+    window.addEventListener("resize", evaluateViewport);
+    window.addEventListener("resize", evaluateVisibility);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("resize", evaluateViewportAndScroll);
-      window.removeEventListener("scroll", evaluateViewportAndScroll);
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+      }
+      window.removeEventListener("resize", evaluateViewport);
+      window.removeEventListener("resize", evaluateVisibility);
+      window.removeEventListener("scroll", onScroll);
     };
   }, [pathname]);
 
@@ -109,6 +136,9 @@ export default function FloatingSocialLauncher() {
     window.addEventListener("keydown", handleEscape);
 
     return () => {
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+      }
       document.removeEventListener("mousedown", handleOutsideClick);
       window.removeEventListener("keydown", handleEscape);
     };
@@ -116,14 +146,40 @@ export default function FloatingSocialLauncher() {
 
   const isVisible = !isIntroBlocking && isVisibleByScroll;
 
+  const openOnHover = () => {
+    if (!canHoverExpand) {
+      return;
+    }
+
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setIsExpanded(true);
+  };
+
+  const closeOnHoverLeave = () => {
+    if (!canHoverExpand) {
+      return;
+    }
+
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+    }
+    closeTimerRef.current = window.setTimeout(() => {
+      setIsExpanded(false);
+      closeTimerRef.current = null;
+    }, 120);
+  };
+
   return (
     <div
       ref={launcherRef}
       className={`social-launcher${isExpanded ? " is-expanded" : ""}${isVisible ? " is-visible" : ""}${
         isMobile ? " is-mobile" : ""
       }`}
-      onMouseEnter={() => setIsExpanded(true)}
-      onMouseLeave={() => setIsExpanded(false)}
+      onMouseEnter={openOnHover}
+      onMouseLeave={closeOnHoverLeave}
     >
       <div className="social-stack" aria-label="Social links">
         <a
