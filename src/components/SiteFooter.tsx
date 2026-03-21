@@ -24,10 +24,10 @@ export default function SiteFooter() {
                 className="site-footer-nav-logo site-footer-nav-logo-dark"
               />
             </div>
-            <p className="site-footer-tagline">master the test , eclipse the rest!</p>
+            <p className="site-footer-tagline">Master the Test, Eclipse the Rest</p>
           </section>
 
-          <section className="site-footer-block" aria-label="Quick links">
+          <section className="site-footer-block site-footer-quick-block" aria-label="Quick links">
             <h3>Quick Links</h3>
             <nav className="site-footer-links">
               <Link href="/courses">Courses</Link>
@@ -36,7 +36,7 @@ export default function SiteFooter() {
             </nav>
           </section>
 
-          <section className="site-footer-block" aria-label="Social links">
+          <section className="site-footer-block site-footer-social-block" aria-label="Social links">
             <h3>Social</h3>
             <div className="site-footer-links">
               <a href="#" aria-label="Open WhatsApp" target="_blank" rel="noreferrer">
@@ -54,10 +54,11 @@ export default function SiteFooter() {
             </div>
           </section>
 
-          <section className="site-footer-block" aria-label="Contact us">
+          <section className="site-footer-block site-footer-contact-block" aria-label="Contact us">
             <h3>Contact Us</h3>
             <p className="site-footer-contact">+8801750964611</p>
             <p className="site-footer-contact">eclipselearners@gmail.com</p>
+            <p className="site-footer-contact">Senpara Parbata Ln, Dhaka 1216</p>
           </section>
         </div>
         <p className="site-footer-meta">
