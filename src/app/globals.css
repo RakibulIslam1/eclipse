@@ -677,7 +677,8 @@ body.theme-dark .profile-icon-btn:hover {
 .site-footer-grid {
   display: grid;
   grid-template-columns: minmax(260px, 1.6fr) minmax(130px, 0.8fr) minmax(140px, 0.9fr) minmax(280px, 1.35fr);
-  gap: 1.25rem;
+  column-gap: 1.6rem;
+  row-gap: 1.25rem;
   align-items: flex-start;
   padding-bottom: 1rem;
 }
@@ -685,6 +686,16 @@ body.theme-dark .profile-icon-btn:hover {
 .site-footer-block {
   grid-column: auto;
   min-width: 0;
+}
+
+.site-footer-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.site-footer-contact-block {
+  padding-left: 0.32rem;
 }
 
 .site-footer-brand {
@@ -714,10 +725,10 @@ body.theme-dark .site-footer-nav-logo-dark {
 
 .site-footer-block h3 {
   margin: 0 0 0.35rem;
-  font-family: var(--font-body), "Segoe UI", sans-serif;
+  font-family: var(--font-heading), Georgia, serif;
   color: color-mix(in oklab, var(--color-1) 85%, var(--color-3));
   font-size: 1.14rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.025em;
 }
 
@@ -738,7 +749,7 @@ body.theme-dark .site-footer-nav-logo-dark {
 }
 
 .site-footer-contact {
-  font-weight: 600;
+  font-weight: 400;
   display: flex;
   align-items: center;
   gap: 0.52rem;
@@ -749,7 +760,7 @@ body.theme-dark .site-footer-nav-logo-dark {
   font-weight: 700;
   font-size: clamp(1.18rem, 1.4vw, 1.38rem);
   letter-spacing: 0.02em;
-  color: color-mix(in oklab, var(--color-1) 72%, #1f5a68);
+  color: #0d7f8f;
   line-height: 1.2;
   display: inline-flex;
   flex-direction: column;
@@ -762,7 +773,7 @@ body.theme-dark .site-footer-nav-logo-dark {
 }
 
 .site-footer-tagline-eclipse {
-  color: #0d7f8f;
+  color: color-mix(in oklab, var(--color-1) 72%, #1f5a68);
   text-shadow: 0 0 18px rgba(12, 124, 144, 0.26);
   animation: footer-eclipse-pulse 4.2s ease-in-out infinite;
 }
@@ -791,7 +802,7 @@ body.theme-dark .site-footer-nav-logo-dark {
 .site-footer-links a {
   width: fit-content;
   position: relative;
-  font-weight: 600;
+  font-weight: 400;
   color: color-mix(in oklab, var(--color-1) 78%, #19484d);
   transition: transform 180ms ease, color 220ms ease, text-shadow 220ms ease;
 }
