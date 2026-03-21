@@ -24,7 +24,12 @@ export default function SiteFooter() {
                 className="site-footer-nav-logo site-footer-nav-logo-dark"
               />
             </div>
-            <p className="site-footer-tagline">Master the Test, Eclipse the Rest</p>
+            <p className="site-footer-tagline" aria-label="Master the Test, Eclipse the Rest">
+              <span className="site-footer-tagline-line">Master the Test,</span>
+              <span className="site-footer-tagline-line">
+                <span className="site-footer-tagline-eclipse">Eclipse</span> the Rest
+              </span>
+            </p>
           </section>
 
           <section className="site-footer-block site-footer-quick-block" aria-label="Quick links">
@@ -56,9 +61,30 @@ export default function SiteFooter() {
 
           <section className="site-footer-block site-footer-contact-block" aria-label="Contact us">
             <h3>Contact Us</h3>
-            <p className="site-footer-contact">+8801750964611</p>
-            <p className="site-footer-contact">eclipselearners@gmail.com</p>
-            <p className="site-footer-contact">Senpara Parbata Ln, Dhaka 1216</p>
+            <p className="site-footer-contact">
+              <span className="site-footer-contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6.62 10.79a15.07 15.07 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.3 21 3 13.7 3 4a1 1 0 0 1 1-1h3.49a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.19 2.2Z" />
+                </svg>
+              </span>
+              +8801750964611
+            </p>
+            <p className="site-footer-contact">
+              <span className="site-footer-contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2-8 5-8-5h16Zm0 12H4V8l8 5 8-5v10Z" />
+                </svg>
+              </span>
+              eclipselearners@gmail.com
+            </p>
+            <p className="site-footer-contact">
+              <span className="site-footer-contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 2a7 7 0 0 0-7 7c0 4.57 5.24 11.95 6.13 13.18a1 1 0 0 0 1.74 0C13.76 20.95 19 13.57 19 9a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z" />
+                </svg>
+              </span>
+              Senpara Parbata Ln, Dhaka 1216
+            </p>
           </section>
         </div>
         <p className="site-footer-meta">
