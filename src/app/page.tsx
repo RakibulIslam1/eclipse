@@ -1,3 +1,20 @@
 export default function Home() {
-  return <></>;
+  return (
+    <section className="hero-section">
+      <div className="hero-text-col">
+        <h1 className="hero-main-h1">
+          <span className="hero-line">Master the Test,</span>
+          <span className="hero-line">
+            <span className="hero-eclipse-word">Eclipse</span> the Rest
+          </span>
+        </h1>
+        <p className="hero-sub">Your journey to academic excellence starts here.</p>
+      </div>
+      <div className="hero-blob-col" aria-hidden="true">
+        <div className="hero-blob">
+          <div className="hero-blob-gloss" />
+        </div>
+      </div>
+    </section>
+  );
 }
