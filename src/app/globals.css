@@ -268,8 +268,11 @@ body.theme-dark .bg-photo-layer {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: 20;
   overflow: visible;
   backdrop-filter: blur(14px) saturate(125%);
@@ -628,7 +631,7 @@ body.theme-dark .profile-icon-btn:hover {
   margin: 0 auto;
   width: 100%;
   flex: 1 0 auto;
-  padding: 2.5rem 1rem 3rem;
+  padding: calc(2.5rem + 72px) 1rem 3rem;
 }
 
 .site-footer {
@@ -1135,7 +1138,7 @@ body.theme-dark .pill {
   }
 
   .site-main {
-    padding-top: 1.6rem;
+    padding-top: calc(1.6rem + 66px);
   }
 
   .brand-logo {
