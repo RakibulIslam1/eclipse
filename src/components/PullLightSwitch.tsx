@@ -43,7 +43,7 @@ export default function PullLightSwitch() {
       }
 
       const headerBottom = headerEl.getBoundingClientRect().bottom;
-      const navCover = Math.max(0, Math.round(headerBottom));
+      const navCover = Math.max(72, Math.round(headerBottom));
       button.style.setProperty("--nav-cover", `${navCover}px`);
     };
 
