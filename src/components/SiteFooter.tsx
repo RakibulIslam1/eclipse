@@ -1,10 +1,46 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import darkModeLogo from "../../contents/images/eclipse_logo_drk-mode-01.png";
 
 export default function SiteFooter() {
+  const footerRef = useRef<HTMLElement | null>(null);
+  const [isTyping, setIsTyping] = useState(false);
+
+  useEffect(() => {
+    const footerEl = footerRef.current;
+
+    if (!footerEl) {
+      return;
+    }
+
+    let wasVisible = false;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !wasVisible) {
+          wasVisible = true;
+          setIsTyping(false);
+          window.requestAnimationFrame(() => {
+            setIsTyping(true);
+          });
+        } else if (!entry.isIntersecting) {
+          wasVisible = false;
+          setIsTyping(false);
+        }
+      },
+      {
+        threshold: 0.45,
+      }
+    );
+
+    observer.observe(footerEl);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <footer className="site-footer" aria-label="Site footer">
+    <footer ref={footerRef} className="site-footer" aria-label="Site footer">
       <div className="site-footer-inner">
         <div className="site-footer-grid">
           <section className="site-footer-block site-footer-brand-block">
@@ -24,9 +60,12 @@ export default function SiteFooter() {
                 className="site-footer-nav-logo site-footer-nav-logo-dark"
               />
             </div>
-            <p className="site-footer-tagline" aria-label="Master the Test, Eclipse the Rest">
-              <span className="site-footer-tagline-line">Master the Test,</span>
-              <span className="site-footer-tagline-line">
+            <p
+              className={`site-footer-tagline${isTyping ? " is-typing" : ""}`}
+              aria-label="Master the Test, Eclipse the Rest"
+            >
+              <span className="site-footer-tagline-line site-footer-tagline-line-1">Master the Test,</span>
+              <span className="site-footer-tagline-line site-footer-tagline-line-2">
                 <span className="site-footer-tagline-eclipse">Eclipse</span> the Rest
               </span>
             </p>
