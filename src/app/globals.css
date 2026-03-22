@@ -214,6 +214,7 @@ body.intro-done .pull-switch {
 
 .pull-switch.dark .pull-switch-glow {
   opacity: 0;
+  animation: none;
   filter: blur(1px);
 }
 
