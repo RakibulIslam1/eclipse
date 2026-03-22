@@ -1357,7 +1357,7 @@ body.theme-dark .pill {
   font-weight: 700;
   font-size: clamp(2.4rem, 3.8vw, 3.8rem);
   line-height: 1.16;
-  color: color-mix(in oklab, var(--color-1) 90%, #0a2a35);
+  color: color-mix(in oklab, #69b8c4 74%, #dff5f8);
   transition: color 420ms ease;
 }
 
@@ -1366,7 +1366,7 @@ body.theme-dark .pill {
 }
 
 .hero-eclipse-word {
-  color: color-mix(in oklab, var(--color-2) 72%, #c85f3f);
+  color: color-mix(in oklab, #0d8e98 78%, #b7eef3);
   transition: color 420ms ease;
 }
 
@@ -1391,21 +1391,21 @@ body.theme-dark .pill {
   position: relative;
   width: 560px;
   height: 560px;
-  margin-left: -2.25rem;
+  margin-left: -1.35rem;
   border-radius: 62% 38% 72% 28% / 52% 64% 36% 48%;
   background: radial-gradient(
     circle at 34% 28%,
-    #f2b49a 0%,
-    #d96b48 42%,
-    #bf4e2e 72%,
-    #9c3820 100%
+    #f8d3c2 0%,
+    #ed9e7f 42%,
+    #de7a58 72%,
+    #c75f3d 100%
   );
   box-shadow:
-    0 8px 0 8px rgba(210, 90, 50, 0.22),
-    0 18px 0 14px rgba(200, 75, 40, 0.14),
-    0 32px 60px rgba(180, 60, 30, 0.32),
-    inset 0 -18px 40px rgba(100, 20, 5, 0.22),
-    inset 0 6px 24px rgba(255, 200, 170, 0.18);
+    0 8px 0 8px rgba(227, 129, 95, 0.2),
+    0 18px 0 14px rgba(222, 120, 88, 0.14),
+    0 32px 60px rgba(203, 104, 72, 0.24),
+    inset 0 -18px 40px rgba(141, 59, 35, 0.16),
+    inset 0 6px 24px rgba(255, 228, 214, 0.22);
   animation:
     hero-blob-morph 9s ease-in-out infinite alternate,
     hero-blob-float 6s ease-in-out infinite alternate;
