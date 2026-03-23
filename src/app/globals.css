@@ -768,29 +768,57 @@ body.theme-dark .site-footer-nav-logo-dark {
 }
 
 .site-footer-tagline-line {
-  display: block;
+  display: flex;
+  align-items: baseline;
+  gap: 0;
 }
 
-.site-footer-tagline.is-typing .site-footer-tagline-line {
-  width: 0;
+/* text portion of each line — expands during typing */
+.site-footer-tagline-text {
+  display: block;
   overflow: hidden;
   white-space: nowrap;
-  border-right: 2px solid currentColor;
-  will-change: width;
+  width: max-content;
 }
 
-.site-footer-tagline.is-typing .site-footer-tagline-line-1 {
-  animation:
-    footer-type-line-one 1.08s steps(16, end) forwards,
-    footer-caret-blink 0.64s step-end 2,
-    footer-caret-hide 0.01s linear 1.08s forwards;
+/* independent cursor bar per line */
+.site-footer-tagline-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: currentColor;
+  margin-left: 3px;
+  flex-shrink: 0;
+  opacity: 0;
+  vertical-align: middle;
 }
 
-.site-footer-tagline.is-typing .site-footer-tagline-line-2 {
+/* ---- line 1 when typing ---- */
+.site-footer-tagline.is-typing .site-footer-tagline-line-1 .site-footer-tagline-text {
+  width: 0;
+  animation: footer-type-line-one 1.1s steps(16, end) forwards;
+}
+
+/* line-1 cursor: appear immediately, blink, then hide once line-2 starts */
+.site-footer-tagline.is-typing .site-footer-tagline-line-1 .site-footer-tagline-cursor {
   animation:
-    footer-type-line-two 1.34s steps(19, end) 1.12s forwards,
-    footer-caret-blink 0.64s step-end 2 1.12s,
-    footer-caret-hide 0.01s linear 2.46s forwards;
+    footer-cursor-show 0s linear forwards,
+    footer-cursor-blink 0.52s step-end 0s 6,
+    footer-cursor-hide 0s linear 3.12s forwards;
+}
+
+/* ---- line 2 when typing ---- */
+/* starts after line-1 finishes (1.2s delay) */
+.site-footer-tagline.is-typing .site-footer-tagline-line-2 .site-footer-tagline-text {
+  width: 0;
+  animation: footer-type-line-two 1.34s steps(19, end) 1.2s forwards;
+}
+
+/* line-2 cursor: appears when line-2 starts typing, then blinks forever */
+.site-footer-tagline.is-typing .site-footer-tagline-line-2 .site-footer-tagline-cursor {
+  animation:
+    footer-cursor-show 0s linear 1.2s forwards,
+    footer-cursor-blink 0.52s step-end 2.54s infinite;
 }
 
 .site-footer-tagline-eclipse {
@@ -1246,20 +1274,26 @@ body.theme-dark .pill {
   }
 }
 
-@keyframes footer-caret-blink {
-  0%,
-  100% {
-    border-right-color: transparent;
-  }
-
-  50% {
-    border-right-color: currentColor;
+@keyframes footer-cursor-show {
+  to {
+    opacity: 1;
   }
 }
 
-@keyframes footer-caret-hide {
+@keyframes footer-cursor-hide {
   to {
-    border-right-color: transparent;
+    opacity: 0;
+  }
+}
+
+@keyframes footer-cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
   }
 }
 
@@ -1360,7 +1394,7 @@ body.theme-dark .pill {
   font-weight: 700;
   font-size: clamp(2.4rem, 3.8vw, 3.8rem);
   line-height: 1.16;
-  color: color-mix(in oklab, #69b8c4 74%, #dff5f8);
+  color: #0a4a54;
   transition: color 420ms ease;
 }
 
@@ -1369,7 +1403,7 @@ body.theme-dark .pill {
 }
 
 .hero-eclipse-word {
-  color: color-mix(in oklab, #0d8e98 78%, #b7eef3);
+  color: #076872;
   transition: color 420ms ease;
 }
 

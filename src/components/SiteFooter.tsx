@@ -64,9 +64,15 @@ export default function SiteFooter() {
               className={`site-footer-tagline${isTyping ? " is-typing" : ""}`}
               aria-label="Master the Test, Eclipse the Rest"
             >
-              <span className="site-footer-tagline-line site-footer-tagline-line-1">Master the Test,</span>
+              <span className="site-footer-tagline-line site-footer-tagline-line-1">
+                <span className="site-footer-tagline-text">Master the Test,</span>
+                <span className="site-footer-tagline-cursor" aria-hidden="true" />
+              </span>
               <span className="site-footer-tagline-line site-footer-tagline-line-2">
-                <span className="site-footer-tagline-eclipse">Eclipse</span> the Rest
+                <span className="site-footer-tagline-text">
+                  <span className="site-footer-tagline-eclipse">Eclipse</span> the Rest
+                </span>
+                <span className="site-footer-tagline-cursor" aria-hidden="true" />
               </span>
             </p>
           </section>
