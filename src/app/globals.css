@@ -1394,7 +1394,7 @@ body.theme-dark .pill {
   font-weight: 700;
   font-size: clamp(2.4rem, 3.8vw, 3.8rem);
   line-height: 1.16;
-  color: #0a4a54;
+  color: #076872;
   transition: color 420ms ease;
 }
 
@@ -1403,7 +1403,7 @@ body.theme-dark .pill {
 }
 
 .hero-eclipse-word {
-  color: #076872;
+  color: #0a4a54;
   transition: color 420ms ease;
 }
 
@@ -1502,11 +1502,11 @@ body.theme-dark .pill {
 /* ---------- dark mode overrides ---------- */
 
 body.theme-dark .hero-main-h1 {
-  color: #cde4f0;
+  color: #da7e5d;
 }
 
 body.theme-dark .hero-eclipse-word {
-  color: #da7e5d;
+  color: #cde4f0;
 }
 
 body.theme-dark .hero-sub {
